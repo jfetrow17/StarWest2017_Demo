@@ -1,0 +1,697 @@
+<html>
+<head>Flight Search:  Logon<title>
+	
+	
+</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<table bgcolor="blue">
+<tbody>
+<p align="center">
+<font face="Arial, Helvetica, sans-serif" size="12">
+<b>Fight Search</b>
+</font?
+</p>
+</tbody>
+</table>
+	<div>
+		<table height="50%"  width="80%" cellspacing="2" cellpadding="2" border="2">
+				<td width="33%" bgcolor="gold">
+				<table>
+				<tbody>
+				<div>
+					<div>
+					<td id="errheader" style="display:none">
+						<font face="Arial, Helvetica, sans-serif" size="5">
+									<b>Errors in your search criteria</b>
+						</font>
+						<br>
+					</td>
+					</div>
+					<div>
+					<td id="errArrDate" style="display:none">
+						<font face="Arial, Helvetica, sans-serif" size="5">
+									<b>Your arrival date cannot before your departure date!</b>
+						</font>
+						<br>
+					</td>
+					</div>
+					<div>
+					<td id="errLCDOB" style="display:none">
+						<font face="Arial, Helvetica, sans-serif" size="5">
+									<b>One of your lap child(ren) will be older than 2 at the time of travel!</b>
+						</font>
+						<br>
+					</td>
+					</div>
+					<div>
+					<td id="errSrDOB" style="display:none">
+						<font face="Arial, Helvetica, sans-serif" size="5">
+									<b>One of your senrior passengers will be younger than 65 at the time of travel!</b>
+						</font>
+						<br>
+					
+					</td>
+					</div>
+					<div>
+						<td id="errDepdes" style="display:none">
+										<font face="Arial, Helvetica, sans-serif" size="5">
+													<b>Your destination city can not be equal to your departure city!</b>
+										</font>
+										<br>
+									</td>
+									<td id="errDepDate" style="display:none">
+										<font face="Arial, Helvetica, sans-serif" size="5">
+													<b>Your departure date cannot be in the past!</b>
+										</font>
+										<br>
+									</td>
+					</div>
+					<div>
+					</tbody>
+					</table>
+					
+				</td>
+			
+				
+				<td width="34%" bgcolor="E1EAEC">
+				<form name="flightsearch" action="/action_page.php" width="80" align="left">	
+							<br>
+							<br>
+							<p>
+							<font face="Arial, Helvetica, sans-serif" size="2">
+							<b>Passengers:</b>
+							</font>
+							</p>
+							<table>
+								<tbody>
+								<tr>
+								<td width="10%"/>
+								<td width="30%">
+									<font face="Arial, Helvetica, sans-serif" size="2">
+									<b>Seniors (age 65+):</b>
+									</font>
+									<br>
+								</td>
+								<td width="30%">
+									<font face="Arial, Helvetica, sans-serif" size="2">
+									<b>Adults (age 2-64):</b>
+									</font>
+									<br>
+								</td>
+								<td width="30%">
+									<font face="Arial, Helvetica, sans-serif" size="2">
+									<b>Lap Children (age <2):</b>
+									</font>
+									<br>
+								</td>
+								</tr>
+								<tr>
+									<td/>
+									<td>
+										<select id="passengersSR" onchange="showSRdob1()">
+										<option value="0" selected="selected">0</option>
+										<option value="1" >1</option>
+										<option value="2" >2</option>
+										<option value="3" >3</option>
+										<option value="4" >4</option>
+										</select> 
+									</td>
+									<script>
+		
+		
+										function showSRdob1(){
+										var x= document.getElementById("passengersSR");
+										var y= document.getElementById("srDOB1");
+										var z= document.getElementById("srDOB2");
+										var a= document.getElementById("srDOB3");
+										var b= document.getElementById("srDOB4");
+										
+										
+										if (x.value=="0"){
+											y.style.display='none';
+											z.style.display='none';
+											a.style.display='none';
+											b.style.display='none';
+										}else if (x.value=="1"){
+											y.style.display='block';
+											z.style.display='none';
+											a.style.display='none';
+											b.style.display='none';
+										}else if(x.value=="2"){
+											y.style.display='block';
+											z.style.display='block';
+											a.style.display='none';
+											b.style.display='none';
+										} else if(x.value=="3"){
+											y.style.display='block';
+											z.style.display='block';
+											a.style.display='block';
+											b.style.display='none';
+										} else{
+											y.style.display='block';
+											z.style.display='block';
+											a.style.display='block';
+											b.style.display='block';
+										} 
+										
+										}
+									</script>
+									
+									
+									<td>
+										<select id="passengers">
+										<option value="0">0</option>
+										<option value="1">1</option>
+										<option value="2" selected="selected">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										</select> 
+									</td>
+									<td>
+										<select id="passengersLap" onchange="showLCdob1()">
+										<option value="0" selected="selected">0</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option> 
+										<option value="4">4</option>
+										</select> 
+									</td>
+									</tr>
+									<script>
+		
+		
+										function showLCdob1(){
+										var x= document.getElementById("passengersLap");
+										var y= document.getElementById("lcDOB1");
+										var z= document.getElementById("lcDOB2");
+										var a= document.getElementById("lcDOB3");
+										var b= document.getElementById("lcDOB4");
+										var m= document.getElementById("passengersSR");
+										var n= document.getElementById("passengers");
+										var q= document.getElementById("errLC");
+										var x1=x.value;
+										var m1=m.value;
+										var n1=n.value;
+										
+										if(x1>(m1+n1)){
+											q.style.display='block';
+										}else{
+											q.style.display='none';
+										}
+										
+										
+										if (x.value=="0"){
+											y.style.display='none';
+											z.style.display='none';
+											a.style.display='none';
+											b.style.display='none';
+										}else if (x.value=="1"){
+											y.style.display='block';
+											z.style.display='none';
+											a.style.display='none';
+											b.style.display='none';
+												
+											
+										}else if(x.value=="2"){
+											y.style.display='block';
+											z.style.display='block';
+											a.style.display='none';
+											b.style.display='none';
+											
+												
+										} else if(x.value=="3"){
+											y.style.display='block';
+											z.style.display='block';
+											a.style.display='block';
+											b.style.display='none';
+										
+												
+										} else{
+											y.style.display='block';
+											z.style.display='block';
+											a.style.display='block';
+											b.style.display='block';
+																						
+										} 
+										
+										}
+									</script>
+									<tr>
+									<td>
+									<div id="srDOB1" style="display:none">
+							<br>
+							<font face="Arial, Helvetica, sans-serif" size="2">
+							<b>1st Senior Date of Birth:</b>
+							</font>
+							<br>
+							<input type="date" id="SrDateofBirth1"/>
+							<br>
+							<br>
+							</div>
+							<div id="srDOB2" style="display:none">
+							<br>
+							<font face="Arial, Helvetica, sans-serif" size="2">
+							<b>2nd Senior Date of Birth:</b>
+							</font>
+							<br>
+							<input type="date" id="SrDateofBirth2"/>
+							<br>
+							<br>
+							</div>
+							<div id="srDOB3" style="display:none">
+							<br>
+							<font face="Arial, Helvetica, sans-serif" size="2">
+							<b>3rd Senior Date of Birth:</b>
+							</font>
+							<br>
+							<input type="date" id="SrDateofBirth3"/>
+							<br>
+							<br>
+							</div>
+							<div id="srDOB4" style="display:none">
+							<br>
+							<font face="Arial, Helvetica, sans-serif" size="2">
+							<b>4th Senior Date of Birth:</b>
+							</font>
+							<br>
+							<input type="date" id="SrDateofBirth4"/>
+							<br>
+							<br>
+									</td>
+									
+									<td>
+									
+									</div>
+							<div id="lcDOB1" style="display:none">
+							<br>
+							<font face="Arial, Helvetica, sans-serif" size="2">
+							<b>1st Lap Child Date of Birth:</b>
+							</font>
+							<br>
+							<input type="date" id="lcDateofBirth1"/>
+							<br>
+							<br>
+							</div>
+							<div id="lcDOB2" style="display:none">
+							<br>
+							<font face="Arial, Helvetica, sans-serif" size="2">
+							<b>2nd Lap Child Date of Birth:</b>
+							</font>
+							<br>
+							<input type="date" id="lcDateofBirth2"/>
+							<br>
+							<br>
+							</div>
+							<div id="lcDOB3" style="display:none">
+							<br>
+							<font face="Arial, Helvetica, sans-serif" size="2">
+							<b>3rd Lap Child Date of Birth:</b>
+							</font>
+							<br>
+							<input type="date" id="lcDateofBirth3"/>
+							<br>
+							<br>
+							</div>
+							<div id="lcDOB4" style="display:none">
+							<br>
+							<font face="Arial, Helvetica, sans-serif" size="2">
+							<b>4th Lap Child Date of Birth:</b>
+							</font>
+							<br>
+							<input type="date" id="lcDateofBirth4"/>
+							<br>
+							<br>
+							</div>
+									</td>
+									</tr>
+								
+								</tbody>
+								</table>
+							<br>
+							<br>
+							<font face="Arial, Helvetica, sans-serif" size="2">
+							<b>Trip Type:</b>
+							</font>
+							<br>
+							<select id="triptype">
+								<option value="roundtrip" selected="selected">Round Trip</option>
+								<option value="oneway">One Way</option>
+							</select>
+							<br>
+							<br>
+							<font face="Arial, Helvetica, sans-serif" size="2">
+							<b>Departure City:</b>
+							</font>
+							<br>
+							<select id="fromPort">
+								<option value="Frankfurt">Frankfurt</option>
+								<option value="London">London</option>
+								<option value="New York">New York</option>
+								<option value="Paris">Paris</option>
+							</select>
+							<br>
+							<br>
+							<font face="Arial, Helvetica, sans-serif" size="2">
+							<b>Destination City:</b>
+							</font>
+							<br>
+							<select id="arrivePort" onchange="dptarrerr()">
+								<option value="Frankfurt">Frankfurt</option>
+								<option value="London">London</option>
+								<option value="New York">New York</option>
+								<option value="Paris">Paris</option>
+							</select>
+							<script>
+							function dptarrerr(){
+								var x=document.getElementById("fromPort");
+								var y=document.getElementById("arrivePort");
+								var z=document.getElementById("triptype");
+								//errDepdes
+								var a=document.getElementById("errDepdes");
+								
+								if(z.value=="oneway"){
+								a.style.display='none';
+								}else{
+									if(x.value==y.value){
+									a.style.display='block';
+									}else{
+									a.style.display='none';
+									}
+									
+								}
+							}
+							</script>
+							
+							<br>
+							<br>
+							<font face="Arial, Helvetica, sans-serif" size="2">
+							<b>Depart Date:</b>
+							</font>
+							<br>
+							<input type="date" id="departDate" onchange="CompareDepartDate()"/>
+							<script>
+								function CompareDepartDate(){
+									var x=document.getElementById("departDate");
+									var today= new Date();
+									var depart= new Date(x.value);
+									var y=document.getElementById("errDepDate");
+									if(today>depart){
+										y.style.display='block';
+									}else{
+										y.style.display='none';
+									}
+								}
+							</script>
+							<br>
+							<br>
+							<font face="Arial, Helvetica, sans-serif" size="2">
+							<b>Return Date:</b>
+							</font>
+							<br>
+							<input type="date" id="retDate"/>
+							<br>
+							<br>
+							<font face="Arial, Helvetica, sans-serif" size="2">
+							<b>Seat Preference:</b>
+							</font>
+							<br>
+							<span id="seatpref">
+							<input type="radio" name="seatType" value="firstclass">First Class<br>
+							<input type="radio" name="seatType" value="business">Business<br>
+							<input type="radio" name="seatType" value="coach" checked>Coach<br>
+							<input type="radio" name="seatType" value="any" checked>Any
+							</span>
+							<br>
+							<br>
+							<font face="Arial, Helvetica, sans-serif" size="2">
+							<b>Prefered Airline:</b>
+							</font>
+							<br>
+							<select name="airline">
+								<option>No Preference</option>
+								<option>Blue Skies Airlines</option>
+								<option>Unified Airlines</option>
+								<option>Pangea Airlines</option>
+							</select>
+							<a id="srcrlt" href="file:///C:/Web_Flight/FlightSearchResults.html" style="display:none">Search Result!</a> 
+							
+					</form>
+					<form method="post" action="/datapass.php">
+						<script>
+							var Sr= document.getElementById("passengersSR").value;
+							var P= document.getElementById("passengers").value;
+							var LC= document.getElementById("passengersLap").value;
+							var Depart= document.getElementById("fromPort").value;
+							var Arrive= document.getElementById("arrivePort").value;
+							var TotalP=(SR+P+LC);
+						</script>
+					</form>
+					<table align="center" bgcolor="light green">
+					<tbody>
+						<td>					
+							<input type="button" name="submit" value="Submit" onclick="validateData()">
+						</td>
+						<script>
+							function validateData(){
+							var o1 = document.getElementById("passengersSR");
+							//var o2 = document.getElementById("passengers");
+							var o3 = document.getElementById("passengersLap");
+							var sr1 = document.getElementById("SrDateofBirth1");
+							var sr1parts=sr1.value.split('-');
+							var sr2 = document.getElementById("SrDateofBirth2");
+							var sr2parts=sr2.value.split('-');
+							var sr3 = document.getElementById("SrDateofBirth3");
+							var sr3parts=sr3.value.split('-');
+							var sr4 = document.getElementById("SrDateofBirth4");
+							var sr4parts=sr4.value.split('-');
+							var lc1 = document.getElementById("lcDateofBirth1");
+							var lc1parts=lc1.value.split('-');
+							var lc2= document.getElementById("lcDateofBirth2");
+							var lc2parts=lc2.value.split('-');
+							var lc3= document.getElementById("lcDateofBirth3");
+							var lc3parts=lc3.value.split('-');
+							var lc4= document.getElementById("lcDateofBirth4");
+							var lc4parts=lc4.value.split('-');
+							var today = new Date();
+							var o4= document.getElementById("fromPort");
+							var o5= document.getElementById("arrivePort");
+							var o6= document.getElementById("triptype");
+							var o7= document.getElementById("departDate");
+							var partsdd=o7.value.split('-');
+							var x =partsdd[0]-65;
+							var y =partsdd[0]-2;
+							var yr65= new Date(x,partsdd[1]-1,partsdd[2]);
+							if (o6.value=="roundtrip"){
+								var o8= document.getElementById("retDate");
+								var partsrd=o8.value.split('-');
+								var y =partsrd[0]-2;
+								var yr2= new Date(y,partsrd[1]-1,partsrd[2]);
+							}else{
+								var y =partsdd[0]-2;
+								var yr2= new Date(y,partsdd[1]-1,partsdd[2]);
+							}
+							var err = document.getElementById("errheader");
+							var em1 = document.getElementById("errArrDate"); //Arrival date < Depart Date
+							var em2 = document.getElementById("errLCDOB"); //Lc > 2yrs old
+							var em3 = document.getElementById("errSrDOB"); // Sr < 65 yrs old
+							var em4 = document.getElementById("errDepdes");// Departure city = destination city
+							var em5 = document.getElementById("errDepDate");// departure date can not be in the past
+							var ef1 = 0;
+							var ef2 = 0;
+							var ef3 = 0;
+							var ef4 = 0;
+							var ef5 = 0;
+							
+								if(new Date(partsdd[0], partsdd[1]-1, partsdd[2])<today){
+									ef5=1;
+									em5.style.display='block';
+								}else{
+									ef5=0;
+									em5.style.display='none';
+								}
+								
+								if ((new Date(partsdd[0], partsdd[1]-1, partsdd[2]))>(new Date(partsrd[0], partsrd[1]-1, partsrd[2]))){
+									ef2=1;
+									em1.style.display='block'; 
+								}else{
+									ef2=0;
+									em1.style.display='none'; 
+								}
+								
+								if((o4.value==o5.value) && (o6.value=="roundtrip")){
+									ef4=1;
+									em4.style.display='block'; 
+								}else{
+									ef4=0;
+									em4.style.display='none'; 
+								}
+							
+								if (o3.value!="0"){
+									if(o3.value=="1"){
+										var lc1=new Date(lc1parts[0], lc1parts[1]-1, lc1parts[2]);
+										if (lc1>yr2){
+											ef3=1;
+											em2.style.display='block';
+										}else{
+											ef3=0;
+											em2.style.display='none';
+										}
+									}else if(o3.value=="2"){
+										var lc1=new Date(lc1parts[0], lc1parts[1]-1, lc1parts[2]);
+										var lc2=new Date(lc2parts[0], lc2parts[1]-1, lc2parts[2]);
+										if ((lc1>yr2) || (lc2>yr2)){
+											ef3=1;
+											em2.style.display='block';
+										}else{
+											ef3=0;
+											em2.style.display='none';
+										}
+									}else if(o3.value=="3"){
+										var lc1=new Date(lc1parts[0], lc1parts[1]-1, lc1parts[2]);
+										var lc2=new Date(lc2parts[0], lc2parts[1]-1, lc2parts[2]);
+										var lc3=new Date(lc3parts[0], lc3parts[1]-1, lc3parts[2]);
+										if ((lc1>yr2) || (lc2>yr2) || (lc3>yr2)){
+											ef3=1;
+											em2.style.display='block';
+										}else{
+											ef3=0;
+											em2.style.display='none';
+										}
+									}else{
+										var lc1=new Date(lc1parts[0], lc1parts[1]-1, lc1parts[2]);
+										var lc2=new Date(lc2parts[0], lc2parts[1]-1, lc2parts[2]);
+										var lc3=new Date(lc3parts[0], lc3parts[1]-1, lc3parts[2]);
+										var lc4=new Date(lc4parts[0], lc4parts[1]-1, lc4parts[2]);
+										if ((lc1>yr2) || (lc2>yr2) || (lc3>yr2)|| (lc4>yr2)){
+											ef3=1;
+											em2.style.display='block';
+										}else{
+											ef3=0;
+											em2.style.display='none';
+										}
+									}
+								}else{
+									ef3=0;
+									em2.style.display='none';
+								}
+							
+								if(o1.value!="0"){
+																	
+								
+									if (o1.value=1){
+										var sr1= new Date(sr1parts[0],sr1parts[1]-1,sr1parts[2]);
+										if(sr1<yr65){
+											ef1=1;
+											em3.style.display='block'; 
+										}else{
+											ef1=0;
+											em3.style.display='none'; 
+										}	
+									}else if(o1.value=2){
+										var sr1= new Date(sr1parts[0],sr1parts[1]-1,sr1parts[2]);
+										var sr2= new Date(sr2parts[0],sr2parts[1]-1,sr2parts[2]);
+										if((sr1>yr65)||(sr2>yr65)){
+											ef1=1;
+											em3.style.display='block'; 
+										}else{
+											ef1=0;
+											em3.style.display='none'; 
+										} 
+									}else if(o1.value=3){
+										var sr1= new Date(sr1parts[0],sr1parts[1]-1,sr1parts[2]);
+										var sr2= new Date(sr2parts[0],sr2parts[1]-1,sr2parts[2]);
+										var sr3= new Date(sr3parts[0],sr3parts[1]-1,sr3parts[2]);
+										if((sr1>yr65)||(sr2>yr65)||(sr3>yr65)){
+											ef1=1;
+											em3.style.display='block'; 
+										}else{
+											ef1=0;
+											em3.style.display='none'; 
+										}
+									}else if(o1.value=4){
+										var sr1= new Date(sr1parts[0],sr1parts[1]-1,sr1parts[2]);
+										var sr2= new Date(sr2parts[0],sr2parts[1]-1,sr2parts[2]);
+										var sr3= new Date(sr3parts[0],sr3parts[1]-1,sr3parts[2]);
+										var sr4= new Date(sr4parts[0],sr4parts[1]-1,sr4parts[2]);
+										if((sr1>yr65)||(sr2>yr65)||(sr3>yr65)||(sr4>yr65)){
+											ef1=1;
+											em3.style.display='block'; 
+										}else{
+											ef1=0;
+											em3.style.display='none'; 
+										}
+									}else{
+										ef1=0;
+										em3.style.display='none';
+									}
+								}else{
+									ef1=0;
+										em3.style.display='none';
+								}
+								
+								//
+								
+								if (ef1+ef2+ef3+ef4+ef5>0){
+									err.style.display='block';
+									
+								}else{
+									err.style.display='none';
+									document.getElementById('srcrlt').click();
+								}
+							}
+
+						</script>
+					</tbody>
+					</table>
+					</td>
+					<td width="33%" bgcolor="gold">
+							
+							
+							
+								
+									<div id="errLC" style="display:none">
+												<font face="Arial, Helvetica, sans-serif" size="5">
+															<b>The number of Lap Child(ren) exceeds the number of paying travelers!</b>
+												</font>
+												<br>
+									</div>
+									
+		</table>
+	</div>
+	</table>
+	<table>
+		<input type="button" id="home" value="Back to Home" onclick="goHome()">
+		<td style="display:none">
+			<a id="homepg" href="file:///C:/Web_Flight/WSTravel_Home.html" style="display:none">Home!</a>
+		</td>
+		<script>
+			function goHome(){
+			document.getElementById('homepg').click()
+			}
+		</script>
+	
+	</table>
+	<br>
+	<br>
+	<table>
+		<input type="button" id="logout" value="Logout" onclick="logoff()">
+		<td style="display:none">
+			<a id="logoff" href="file:///C:/Web_Flight/SW_TravelServices_Logon.html" style="display:none">logon!</a>
+		</td>
+		<script>
+			function logoff(){
+			document.getElementById('logoff').click()
+			}
+		</script>
+	
+	</table>
+	
+</body>
+</html>
+  
+
+  

@@ -1,0 +1,169 @@
+<html>
+<head>Your Favorite Flight Search<title>
+	
+	
+</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<table bgcolor="blue">
+<tbody>
+<p align="center">
+<font face="Arial, Helvetica, sans-serif" size="12">
+<b>Hotel Search</b>
+</font?
+</p>
+</tbody>
+</table>
+<table height="50%"  width="80%" cellspacing="2" cellpadding="2" border="2">
+	<tbody>
+		<td width="33%" bgcolor="gold"/>
+		<td width="34%" bgcolor="E1EAEC"/>
+			<form>
+				<table>
+					<tr>
+						<td>
+							Destination
+						</td>
+						<td>
+							<select id="fromPort">
+								<option value="Frankfurt">Frankfurt</option>
+								<option value="London">London</option>
+								<option value="New York">New York</option>
+								<option value="Paris">Paris</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Arrival Date
+						</td>
+						<td>
+							<input type="date" id="arrvdt">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Lenght of Stay (Days)
+						</td>
+						<td>
+							<select id="lgthStay" onchange="retDate()">
+								<option value="0"></option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+							</select>
+						</td>
+					</tr>
+					<tr id="msg1" style="display:none">
+						<td>
+						<font color="red">
+						<p>Please Select Arrival Date</p>
+						</td id="msg2">
+						</font>
+					</tr>	
+					<tr id="msg2" style="display:none" font="red">	
+						<td>
+						<font color="red">
+						<p>Check out date is:  </P>
+						</td>
+						<td id="dpart"/>
+						</font>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Number of Guests
+						</td>
+						<td>
+						<select id="guests">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						<input type="button" id="search" value="Search" onclick="validateData()">
+						</td>
+					
+						<script>
+							function retDate(){
+								var x =document.getElementById('arrvdt').value;
+								var y =document.getElementById('lgthStay').value;
+								var sdx=x.split('-');
+								if(y=="0"){
+									document.getElementById('msg1').style.display='block';
+									document.getElementById('msg2').style.display='none';
+								}else{
+								document.getElementById('msg1').style.display='none';
+								document.getElementById('msg2').style.display='block'
+								var dat= new Date(sdx[0],sdx[1]-1,sdx[2]);
+								var dat2=new Date(dat.setTime( dat.getTime () + y*86400000));
+								var d= dat2.toString();
+								var d2= d.substring(3,16);
+								document.getElementById('dpart').innerHTML=d2;
+								}
+							}
+						</script>	
+						<script>
+							function validateData(){
+							var x= document.getElementById('lgthStay').value;
+							var y=document.getElementById('arrvdt').value;
+							var parts=y.split('-');
+							var date= new Date(parts[0],parts[1]-1, parts[2]);
+							var today= new Date();
+							var err=document.getElementById('msg3');
+							if(today>=date){
+										err.style.display='block';
+									}else{
+										err.style.display='none';
+										document.getElementById('home').click()
+									}
+							}
+						</script>
+					</tr>
+					<tr id="msg3" style="display:none" font="red">
+					<td>
+						<font color="red">
+							Please Enter Arrival date >= today!
+						</font>
+					</td>
+					</tr>
+					<tr>
+						<td style="display:none">
+							<a id="home" href="file:///C:/Web_Flight/WSTravel_Home.html" style="display:none">Home!</a>
+						</td>
+					</tr>
+				</table>
+				</form>
+			
+		<td width="33%" bgcolor="gold"/>
+		
+	</tbody>
+</table>
+
+	<br>
+	<table>
+		<input type="button" id="logout" value="Logout" onclick="logoff()">
+		<td style="display:none">
+			<a id="logoff" href="file:///C:/Web_Flight/SW_TravelServices_Logon.html" style="display:none">logon!</a>
+		</td>
+		<script>
+			function logoff(){
+			document.getElementById('logoff').click()
+			
+			}
+		</script>
+	
+	</table>
+</body>
+</html>

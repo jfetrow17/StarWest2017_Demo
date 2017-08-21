@@ -1,0 +1,7 @@
+body {background: #1a1aff; margin: 0; padding: 0;} 
+a {color: #2b2bf6;}           
+container {width: 900px; margin: 0; padding: 0; background: #1a1aff;}           
+header {width: 900px; 	height: 150px; 	margin: 0; padding: 0; border: 0; background: #ffffcc;}           
+sidebar {width: 200px; height: 400px; 	margin: 0; padding: 0; border: 0; float: left; background: #ffffcc;}           
+content {width: 700px; height: 400px; 	margin: 0; padding: 0; border: 0; float: left; background: #9999ff;}           
+#footer {width: 900px; 	height: 70px; 	margin: 0; padding: 0; border: 0; float: left; background: #000000; clear:both;}                            

@@ -1,0 +1,119 @@
+<html>
+<head>Your Favorite Flight Search<title>
+	
+	
+</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<table bgcolor="blue">
+<tbody>
+<p align="center">
+<font face="Arial, Helvetica, sans-serif" size="12">
+<b>Flight Search:  Select Your Flight</b>
+</font?
+</p>
+</tbody>
+</table>
+<table height="50%"  width="80%" cellspacing="2" cellpadding="2" border="2">
+	<tbody>
+		<td width="10%" bgcolor="gold"/>
+		<td width="80%" bgcolor="E1EAEC"/>
+			<table role="grid"
+			   aria-labelledby="grid1Label"
+			   class="data" style="width:100%" cellspacing="2" cellpadding="2" border="2">
+			<tbody>
+				<tr >
+					<th border= "1px solid black">Selected Flight</th>
+					<th border= "1px solid black">Depart From</th>
+					<th border= "1px solid black">Arrive In</th>
+					<th border= "1px solid black">Depart Date</th>
+					<th border= "1px solid black">Flight Duration</th>
+					<th border= "1px solid black">Return Date</th>
+					<th border= "1px solid black">Flight Duration</th>
+				</tr>
+				<tr>
+					<td>
+					<input type="checkbox" id="r1"/>
+					</td>
+					<td id="1Port"> SomePort </td>
+					<td id="1Destination"> SomeDestination </td>
+					<td id="1dd"> SomeDepartDate </td>
+					<td id="1dfd"> SomeDuration </td>
+					<td id="1rd"> SomeRetrunDate </td>
+					<td id="1rfd"> SomeDuration </td>
+				</tr>
+				<tr>
+					<td>
+					<input type="checkbox" id="r2"/>
+					</td>
+					<td id="2Port"> SomePort </td>
+					<td id="2Destination"> SomeDestination </td>
+					<td id="2dd"> SomeDepartDate </td>
+					<td id="2dfd"> SomeDuration </td>
+					<td id="2rd"> SomeRetrunDate </td>
+					<td id="2rfd"> SomeDuration </td>
+				</tr>
+				<tr>
+					
+				</tr>
+			</tbody>			
+			</table>	
+		<td width="10%" bgcolor="gold"/>
+		
+	</tbody>
+</table>
+	<table>
+		<input type="button" id="continuebtn" value="Continue" onclick="continueslct()">
+		
+		<script>
+			function continueslct(){
+			var Flight1=document.getElementById('r1').checked;
+			var Flight2=document.getElementById('r2').checked;
+			
+			if(Flight1===true){
+				if(Flight2===true ){
+					document.getElementById('errfltsel').style.display='block';
+				}else{
+					//document.getElementById('errfltsel').style.display='none';
+					document.getElementById('guests').click();
+				}
+			}else if(Flight1===false){
+				if(Flight2===false){
+				document.getElementById('errfltsel').style.display='block';
+				}else{
+					//document.getElementById('errfltsel').style.display='none';
+					document.getElementById('guests').click();
+				}
+			}
+			}
+		</script>
+	
+	</table>
+	<table>
+		<td style="display:none">
+				<a id="guests" href="file:///C:/Web_Flight/GuestRegistration.html" style="display:none">Continue!</a>
+		</td>
+		<td id="errfltsel" style="display:none">
+						<font color="red">
+									Please Select A Flight To Proceed
+						</font>
+		</td>
+	</table>
+	<br>
+	<table>
+		<input type="button" id="logout" value="Logout" onclick="logoff()">
+		<td style="display:none">
+			<a id="logoff" href="file:///C:/Web_Flight/SW_TravelServices_Logon.html" style="display:none">logon!</a>
+		</td>
+		<script>
+			function logoff(){
+			document.getElementById('logoff').click()
+			}
+		</script>
+	
+	</table>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<html>
+<head>Flight Search:  Logon           <title>
+	
+	
+</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<table bgcolor="blue">
+<tbody>
+<p align="center">
+<font face="Arial, Helvetica, sans-serif" size="12">
+<b>Flight Search:  Logon             </b>
+</font?
+</p>
+</tbody>
+</table>
+<div>
+	<table height="50%"  width="80%" cellspacing="2" cellpadding="2" border="2">
+				<td width="33%" bgcolor="gold">
+				<td id="errLogon" style="display:none">
+					<font face="Arial, Helvetica, sans-serif" size="5">
+					<b>Username or Password is Invalid, please try again</b>
+					</font>
+				</td>
+	
+	<td width="34%" bgcolor="E1EAEC">
+		<form name="flightsearch" width="80" align="left">	
+			<br>
+			<br>
+			
+									<font face="Arial, Helvetica, sans-serif" size="2">
+									<b>Username:</b>
+									</font>
+									<br>
+								
+			<input type="text" id="usrnm"/>
+			<br>
+			<br>
+			<font face="Arial, Helvetica, sans-serif" size="2">
+									<b>Password:</b>
+									</font>
+									<br>
+			<input type="text" id="pw"/>
+			<br>
+			<br>
+			<input type="button" id="logon" value="Logon" onclick="securitychk()">
+			<script>
+					function securitychk(){
+					var un = document.getElementById("usrnm");
+					var pw =document.getElementById("pw");
+					if(un.value=="Invalid"  ||pw.value=="Invalid"){
+						document.getElementById("errLogon").style.display='block';
+					}else{
+						document.getElementById('homepg').click(); 
+					}
+					}
+				</script>
+			<br>
+			<br>
+				<a id="homepg" href="file:///C:/Web_Flight/WSTravel_Home.html" style="display:none">Home!</a>
+			<br>
+				
+			</form>
+	</td>
+	<td width="33%" bgcolor="gold"/>
+			
+</body>
+</html>
