@@ -49,7 +49,7 @@
 							Lenght of Stay (Days)
 						</td>
 						<td>
-							<select id="lgthStay" onchange="retDate()">
+							<select id="los" onchange="retDate()">
 								<option value="0"></option>
 								<option value="1">1</option>
 								<option value="2">2</option>
@@ -98,7 +98,7 @@
 						<script>
 							function retDate(){
 								var x =document.getElementById('arrvdt').value;
-								var y =document.getElementById('lgthStay').value;
+								var y =document.getElementById('los').value;
 								var sdx=x.split('-');
 								if(y=="0"){
 									document.getElementById('msg1').style.display='block';
@@ -116,13 +116,14 @@
 						</script>	
 						<script>
 							function validateData(){
-							var x= document.getElementById('lgthStay').value;
+							var x= document.getElementById('los').value;
 							var y=document.getElementById('arrvdt').value;
 							var parts=y.split('-');
 							var date= new Date(parts[0],parts[1]-1, parts[2]);
 							var today= new Date();
+							today.setHours(0,0,0,0);
 							var err=document.getElementById('msg3');
-							if(today>=date){
+							if(today>date){
 										err.style.display='block';
 									}else{
 										err.style.display='none';

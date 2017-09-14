@@ -359,7 +359,7 @@
 							<b>Destination City:</b>
 							</font>
 							<br>
-							<select id="arrivePort" onchange="dptarrerr()">
+							<select id="arrivePort">
 								<option value="Frankfurt">Frankfurt</option>
 								<option value="London">London</option>
 								<option value="New York">New York</option>
@@ -392,7 +392,7 @@
 							<b>Depart Date:</b>
 							</font>
 							<br>
-							<input type="date" id="departDate" onchange="CompareDepartDate()"/>
+							<input type="date" id="departDate" />
 							<script>
 								function CompareDepartDate(){
 									var x=document.getElementById("departDate");
@@ -431,24 +431,14 @@
 							<b>Prefered Airline:</b>
 							</font>
 							<br>
-							<select name="airline">
-								<option>No Preference</option>
-								<option>Blue Skies Airlines</option>
-								<option>Unified Airlines</option>
-								<option>Pangea Airlines</option>
+							<select id="airline">
+								<option value="No Preference">No Preference</option>
+								<option value="Blue Skies Airlines">Blue Skies Airlines</option>
+								<option value="Unified Airlines">Unified Airlines</option>
+								<option value="Pangea Airlines">Pangea Airlines</option>
 							</select>
 							<a id="srcrlt" href="file:///C:/Web_Flight/FlightSearchResults.html" style="display:none">Search Result!</a> 
 							
-					</form>
-					<form method="post" action="/datapass.php">
-						<script>
-							var Sr= document.getElementById("passengersSR").value;
-							var P= document.getElementById("passengers").value;
-							var LC= document.getElementById("passengersLap").value;
-							var Depart= document.getElementById("fromPort").value;
-							var Arrive= document.getElementById("arrivePort").value;
-							var TotalP=(SR+P+LC);
-						</script>
 					</form>
 					<table align="center" bgcolor="light green">
 					<tbody>
@@ -458,8 +448,11 @@
 						<script>
 							function validateData(){
 							var o1 = document.getElementById("passengersSR");
-							//var o2 = document.getElementById("passengers");
+							var o2 = document.getElementById("passengers");
 							var o3 = document.getElementById("passengersLap");
+							var o1v=o1.value; // value of the SR passengers
+							var o2v=o2.value; // value of Passengers
+							var o3v=o3.value; // value of Lap Children passengers
 							var sr1 = document.getElementById("SrDateofBirth1");
 							var sr1parts=sr1.value.split('-');
 							var sr2 = document.getElementById("SrDateofBirth2");
@@ -477,6 +470,7 @@
 							var lc4= document.getElementById("lcDateofBirth4");
 							var lc4parts=lc4.value.split('-');
 							var today = new Date();
+							today.setHours(0,0,0,0);
 							var o4= document.getElementById("fromPort");
 							var o5= document.getElementById("arrivePort");
 							var o6= document.getElementById("triptype");
@@ -485,9 +479,12 @@
 							var x =partsdd[0]-65;
 							var y =partsdd[0]-2;
 							var yr65= new Date(x,partsdd[1]-1,partsdd[2]);
-							if (o6.value=="roundtrip"){
-								var o8= document.getElementById("retDate");
+							var CmpDate=new Date(partsdd[0], partsdd[1]-1, partsdd[2]);
+							CmpDate.setHours(0,0,0,0);
+							var o8= document.getElementById("retDate");
 								var partsrd=o8.value.split('-');
+							if (o6.value=="roundtrip"){
+								
 								var y =partsrd[0]-2;
 								var yr2= new Date(y,partsrd[1]-1,partsrd[2]);
 							}else{
@@ -500,13 +497,34 @@
 							var em3 = document.getElementById("errSrDOB"); // Sr < 65 yrs old
 							var em4 = document.getElementById("errDepdes");// Departure city = destination city
 							var em5 = document.getElementById("errDepDate");// departure date can not be in the past
+							var em6 = document.getElementById("errLC");//Too Many Lap Children
+							var em7 = document.getElementById("errNoPsgr");// No Passengers
 							var ef1 = 0;
 							var ef2 = 0;
 							var ef3 = 0;
 							var ef4 = 0;
 							var ef5 = 0;
-							
-								if(new Date(partsdd[0], partsdd[1]-1, partsdd[2])<today){
+							var ef6 = 0;
+							var ef7 = 0;
+							var PayingPass= parseInt(o1.value)+parseInt(o2.value);	
+
+								
+								if((parseInt(o1.value)+parseInt(o2.value)+parseInt(o3.value))==0){
+									ef7 =1;
+									em7.style.display='block';
+								}else{
+									ef7 =0;
+									em7.style.display='none';
+								}
+								if(o3.value<=PayingPass){
+								ef6 =0;
+								em6.style.display='none';
+								}else{
+								ef6 =1;
+								em6.style.display='block';
+								}
+								
+								if(CmpDate<today){
 									ef5=1;
 									em5.style.display='block';
 								}else{
@@ -530,8 +548,25 @@
 									em4.style.display='none'; 
 								}
 							
+								
+								
+								if(o3v==1 && (!lc1.value||lc1.value=="")){
+									ef3=1;
+									em2.style.display='block';
+								}else if(o3v==2 && ((!lc1.value||lc1.value=="")||(!lc2.value||lc2.value==""))){								
+									ef3=1;
+									em2.style.display='block';
+								}else if(o3v==3 && ((!lc1.value||lc1.value=="")||(!lc2.value||lc2.value=="")||(!lc3.value||lc3.value==""))){
+									ef3=1;
+									em2.style.display='block';
+								}else if(o3v==4 && ((!lc1.value||lc1.value=="")||(!lc2.value||lc2.value=="")||(!lc3.value||lc3.value=="")||(!lc4.value||lc4.value==""))){
+									ef3=1;
+									em2.style.display='block';
+								}else{
+									
 								if (o3.value!="0"){
 									if(o3.value=="1"){
+										
 										var lc1=new Date(lc1parts[0], lc1parts[1]-1, lc1parts[2]);
 										if (lc1>yr2){
 											ef3=1;
@@ -578,13 +613,28 @@
 									ef3=0;
 									em2.style.display='none';
 								}
+								}
 							
+								if(o1v==1 && (!sr1.value||sr1.value=="")){
+									ef1=1;
+									em3.style.display='block'; 
+								}else if (o1v==2 && ((!sr1.value||sr1.value=="")||(!sr2.value||sr2.value==""))){
+									ef1=1;
+									em3.style.display='block'; 
+								}else if(o1v==3 && ((!sr1.value||sr1.value=="")||(!sr2.value||sr2.value=="")||(!sr3.value||sr3.value==""))){
+									ef1=1;
+									em3.style.display='block'; 
+								}else if(o1v==4 && ((!sr1.value||sr1.value=="")||(!sr2.value||sr2.value=="")||(!sr3.value||sr3.value=="")||(!sr4.value||sr4.value==""))){
+									ef1=1;
+									em3.style.display='block'; 
+								}else{
+									
 								if(o1.value!="0"){
 																	
 								
 									if (o1.value=1){
 										var sr1= new Date(sr1parts[0],sr1parts[1]-1,sr1parts[2]);
-										if(sr1<yr65){
+										if(sr1>yr65){
 											ef1=1;
 											em3.style.display='block'; 
 										}else{
@@ -632,10 +682,11 @@
 									ef1=0;
 										em3.style.display='none';
 								}
+								}
 								
 								//
 								
-								if (ef1+ef2+ef3+ef4+ef5>0){
+								if (ef1+ef2+ef3+ef4+ef5+ef6+ef7>0){
 									err.style.display='block';
 									
 								}else{
@@ -656,6 +707,12 @@
 									<div id="errLC" style="display:none">
 												<font face="Arial, Helvetica, sans-serif" size="5">
 															<b>The number of Lap Child(ren) exceeds the number of paying travelers!</b>
+												</font>
+												<br>
+									</div>
+									<div id="errNoPsgr" style="display:none">
+												<font face="Arial, Helvetica, sans-serif" size="5">
+															<b>You have selected 0 passengers!</b>
 												</font>
 												<br>
 									</div>
