@@ -22,7 +22,7 @@ public class SelectFlight_API extends ExecutionContext {
 	
 	public void v_SelectFlight() throws InterruptedException{
 		//Verifies Flight Selected
-		OL.VerifySelectedFlight(FlightNum);
+		//OL.VerifySelectedFlight(FlightNum);
 	}
 	
 	public void v_Error() throws InterruptedException{

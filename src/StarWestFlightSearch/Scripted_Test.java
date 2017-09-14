@@ -7,6 +7,7 @@ import StarWestFlightSearch.ObjectLibrary;
 public class Scripted_Test {
 
 	public static StarWestFlightSearch.ObjectLibrary OL;
+	public static StarWestFlightSearch.DealWithDates DD;
 	
 	public static void main(String[] args) throws InterruptedException, ParseException {
 		OL.LaunchSite();
@@ -14,12 +15,8 @@ public class Scripted_Test {
 		OL.EnterPassword("Valid");
 		OL.Logon();
 		OL.Flight_Link();
-		OL.SelectSRPass(4);
-		OL.VerifySrPassengers(4);
-		OL.EnterDepartDate("12/09/2017");
-		OL.VerifyDepartDate("12/09/2017");
-		OL.SelectSeatType("coach");
-		OL.VerifySeatType("coach");
+		OL.SelectLCPass(1);
+		OL.EnterLC1DOB(DD.DOB_2("<2 at Return", "10/10/2017"));
 		
 	 }
 	

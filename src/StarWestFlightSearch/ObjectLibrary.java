@@ -7,22 +7,25 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 public class ObjectLibrary {
-
+	
 	public static String StepResult;
 	public static WebDriver driver ;
 	
 	
 	
 	public static void LaunchSite() throws InterruptedException{
-		
-		driver= new FirefoxDriver();
+		System.setProperty("webdriver.chrome.driver", "C:/Web_Flight/chromedriver.exe");
+		driver = new ChromeDriver();
+		//driver= new FirefoxDriver();
 		driver.get("file:///C:/Web_Flight/SW_TravelServices_Logon.html");
 		Thread.sleep(500);
 		
@@ -222,8 +225,11 @@ public class ObjectLibrary {
 		System.out.println(Result);
 		Thread.sleep(500);
 	}
-	
+	//Date field
 	public static void EnterDepartDate(String Depart) throws InterruptedException{
+		driver.findElement(By.id("departDate")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("departDate")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("departDate")).sendKeys(Keys.DELETE);
 		driver.findElement(By.id("departDate")).sendKeys(Depart);
 		Thread.sleep(500);
 	}
@@ -241,8 +247,11 @@ public class ObjectLibrary {
 		System.out.println(Result);
 		Thread.sleep(500);
 	}
-	
+	//Date Field
 	public static void EnterRetrunDate(String Return) throws InterruptedException{
+		driver.findElement(By.id("retDate")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("retDate")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("retDate")).sendKeys(Keys.DELETE);
 		driver.findElement(By.id("retDate")).sendKeys(Return);
 		Thread.sleep(500);
 	}
@@ -303,8 +312,14 @@ public class ObjectLibrary {
 		System.out.println(Result);
 		Thread.sleep(500);
 	}
-	
+	//Date Field
 	public static void EnterSr1DOB(String DOB) throws InterruptedException{
+		driver.findElement(By.id("SrDateofBirth1")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("SrDateofBirth1")).sendKeys(Keys.TAB);
+		driver.findElement(By.id("SrDateofBirth1")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("SrDateofBirth1")).sendKeys(Keys.TAB);
+		driver.findElement(By.id("SrDateofBirth1")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("SrDateofBirth1")).sendKeys(Keys.TAB);
 		driver.findElement(By.id("SrDateofBirth1")).sendKeys(DOB);
 		Thread.sleep(500);
 	}
@@ -322,8 +337,14 @@ public class ObjectLibrary {
 		System.out.println(Result);
 		Thread.sleep(500);
 	}
-	
+	//Date Field
 	public static void EnterSr2DOB(String DOB) throws InterruptedException{
+		driver.findElement(By.id("SrDateofBirth2")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("SrDateofBirth2")).sendKeys(Keys.TAB);
+		driver.findElement(By.id("SrDateofBirth2")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("SrDateofBirth2")).sendKeys(Keys.TAB);
+		driver.findElement(By.id("SrDateofBirth2")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("SrDateofBirth2")).sendKeys(Keys.TAB);
 		driver.findElement(By.id("SrDateofBirth2")).sendKeys(DOB);
 		Thread.sleep(500);
 	}
@@ -341,8 +362,14 @@ public class ObjectLibrary {
 		System.out.println(Result);
 		Thread.sleep(500);
 	}
-	
+	//Date Field
 	public static void EnterSr3DOB(String DOB) throws InterruptedException{
+		driver.findElement(By.id("SrDateofBirth3")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("SrDateofBirth3")).sendKeys(Keys.TAB);
+		driver.findElement(By.id("SrDateofBirth3")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("SrDateofBirth3")).sendKeys(Keys.TAB);
+		driver.findElement(By.id("SrDateofBirth3")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("SrDateofBirth3")).sendKeys(Keys.TAB);
 		driver.findElement(By.id("SrDateofBirth3")).sendKeys(DOB);
 		Thread.sleep(500);
 	}
@@ -360,8 +387,14 @@ public class ObjectLibrary {
 		System.out.println(Result);
 		Thread.sleep(500);
 	}
-	
+	//Date Field
 	public static void EnterSr4DOB(String DOB) throws InterruptedException{
+		driver.findElement(By.id("SrDateofBirth4")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("SrDateofBirth4")).sendKeys(Keys.TAB);
+		driver.findElement(By.id("SrDateofBirth4")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("SrDateofBirth4")).sendKeys(Keys.TAB);
+		driver.findElement(By.id("SrDateofBirth4")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("SrDateofBirth4")).sendKeys(Keys.TAB);
 		driver.findElement(By.id("SrDateofBirth4")).sendKeys(DOB);
 		Thread.sleep(500);
 	}
@@ -379,8 +412,14 @@ public class ObjectLibrary {
 		System.out.println(Result);
 		Thread.sleep(500);
 	}
-	
+	//Date Field
 	public static void EnterLC1DOB(String DOB) throws InterruptedException{
+		driver.findElement(By.id("lcDateofBirth1")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("lcDateofBirth1")).sendKeys(Keys.TAB);
+		driver.findElement(By.id("lcDateofBirth1")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("lcDateofBirth1")).sendKeys(Keys.TAB);
+		driver.findElement(By.id("lcDateofBirth1")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("lcDateofBirth1")).sendKeys(Keys.TAB);
 		driver.findElement(By.id("lcDateofBirth1")).sendKeys(DOB);
 		Thread.sleep(500);
 	}
@@ -398,8 +437,14 @@ public class ObjectLibrary {
 		System.out.println(Result);
 		Thread.sleep(500);
 	}
-	
+	//Date Field
 	public static void EnterLC2DOB(String DOB) throws InterruptedException{
+		driver.findElement(By.id("lcDateofBirth2")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("lcDateofBirth2")).sendKeys(Keys.TAB);
+		driver.findElement(By.id("lcDateofBirth2")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("lcDateofBirth2")).sendKeys(Keys.TAB);
+		driver.findElement(By.id("lcDateofBirth2")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("lcDateofBirth2")).sendKeys(Keys.TAB);
 		driver.findElement(By.id("lcDateofBirth2")).sendKeys(DOB);
 		Thread.sleep(500);
 	}
@@ -417,8 +462,14 @@ public class ObjectLibrary {
 		System.out.println(Result);
 		Thread.sleep(500);
 	}
-	
+	//Date Field
 	public static void EnterLC3DOB(String DOB) throws InterruptedException{
+		driver.findElement(By.id("lcDateofBirth3")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("lcDateofBirth3")).sendKeys(Keys.TAB);
+		driver.findElement(By.id("lcDateofBirth3")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("lcDateofBirth3")).sendKeys(Keys.TAB);
+		driver.findElement(By.id("lcDateofBirth3")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("lcDateofBirth3")).sendKeys(Keys.TAB);
 		driver.findElement(By.id("lcDateofBirth3")).sendKeys(DOB);
 		Thread.sleep(500);
 	}
@@ -436,8 +487,14 @@ public class ObjectLibrary {
 		System.out.println(Result);
 		Thread.sleep(500);
 	}
-	
+	//Date Field
 	public static void EnterLC4DOB(String DOB) throws InterruptedException{
+		driver.findElement(By.id("lcDateofBirth4")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("lcDateofBirth4")).sendKeys(Keys.TAB);
+		driver.findElement(By.id("lcDateofBirth4")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("lcDateofBirth4")).sendKeys(Keys.TAB);
+		driver.findElement(By.id("lcDateofBirth4")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("lcDateofBirth4")).sendKeys(Keys.TAB);
 		driver.findElement(By.id("lcDateofBirth4")).sendKeys(DOB);
 		Thread.sleep(500);
 	}
@@ -533,6 +590,18 @@ public class ObjectLibrary {
 		Thread.sleep(500);
 	}
 	
+	public static void ErrorNoPassengers() throws InterruptedException{
+		String Expected="display: block;";
+		String style=driver.findElement(By.id("errNoPsgr")).getAttribute("style");
+		String Result=null;
+		if(style==Expected){
+			Result="Pass";
+		}else{
+			Result="Fail";
+		}
+		Thread.sleep(500);
+	}
+	
 	/**
 	 * Select a Flight Screen
 	 * @throws InterruptedException 
@@ -587,6 +656,11 @@ public class ObjectLibrary {
 		Thread.sleep(500);
 	}
 	
+	/**
+	 * 
+	 * Guest Registration
+	 */
+	
 	public static void EnterFirstName(int row, String FstName) throws InterruptedException{
 		driver.findElement(By.xpath("//tr[@id='row"+row+"']/td[2]")).sendKeys(FstName);
 		Thread.sleep(500);
@@ -620,8 +694,11 @@ public class ObjectLibrary {
 		}
 		Thread.sleep(500);
 	}
-	
+	//date field
 	public static void EnterDOB(int row, String DOB) throws InterruptedException{
+		driver.findElement(By.xpath("//tr[@id='row"+row+"']/td[4]")).sendKeys(Keys.DELETE);
+		driver.findElement(By.xpath("//tr[@id='row"+row+"']/td[4]")).sendKeys(Keys.DELETE);
+		driver.findElement(By.xpath("//tr[@id='row"+row+"']/td[4]")).sendKeys(Keys.DELETE);
 		driver.findElement(By.xpath("//tr[@id='row"+row+"']/td[4]")).sendKeys(DOB);
 		Thread.sleep(500);
 	}
@@ -709,6 +786,9 @@ public class ObjectLibrary {
 	}
 	
 	public static void Hotel_EnterArrival(String Arrival) throws InterruptedException{
+		driver.findElement(By.id("arrvdt")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("arrvdt")).sendKeys(Keys.DELETE);
+		driver.findElement(By.id("arrvdt")).sendKeys(Keys.DELETE);
 		driver.findElement(By.id("arrvdt")).sendKeys(Arrival);
 		Thread.sleep(500);
 	}
@@ -728,14 +808,14 @@ public class ObjectLibrary {
 	public static void Hotel_SelectLengthOfStay(int LOS) throws InterruptedException{
 		String x=String.valueOf(LOS);
 		System.out.println("Selecting Length of Stay:  "+x);
-		Select dropdown = new Select(driver.findElement(By.id("lgthStay")));
+		Select dropdown = new Select(driver.findElement(By.id("los")));
 		dropdown.selectByValue(String.valueOf(x));
 		Thread.sleep(500);
 	}
 
 	public static void Hotel_VerifyLengthOfStay(int LOS) throws InterruptedException{
 		String Expected=String.valueOf(LOS);
-		String Actual=driver.findElement(By.id("lghtStay")).getAttribute("value");
+		String Actual=driver.findElement(By.id("los")).getAttribute("value");
 		String Result=null;
 		if(Expected.equals(Actual)){
 			Result="Pass";
@@ -746,6 +826,7 @@ public class ObjectLibrary {
 	}
 	
 	public static void Hotel_VerifyDepartDate(int LOS, String Arrival) throws ParseException, InterruptedException{
+		System.out.println("The Arrival Date is:  "+Arrival);
 		Date DepartDate=StringToDate(Arrival);
 		SimpleDateFormat sdf = new SimpleDateFormat("mm/dd/yyyy");
 		Calendar c = Calendar.getInstance();

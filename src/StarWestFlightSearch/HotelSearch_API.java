@@ -12,13 +12,13 @@ import org.graphwalker.core.machine.ExecutionContext;
 import org.graphwalker.core.model.Action;
 
 public class HotelSearch_API extends ExecutionContext{
-
+	static StarWestFlightSearch.DealWithDates dd;
 	public static StarWestFlightSearch.ObjectLibrary OL;
 	
 	public static String City;
 	public static String ArrivalDate;
-	public static Calendar AD;
-	public static String AD_str;
+	public static String AD;
+	
 	public static String LOS;
 	public static int LengthOfStay;
 	public static String DepartDate;
@@ -44,50 +44,54 @@ public class HotelSearch_API extends ExecutionContext{
 	}
 	
 	public void v_ArrivalDate() throws InterruptedException{
+		
 		OL.Hotel_VerifyArrivalDate(ArrivalDate);
+		
 	}
 	
-	public void e_ArrivalDate() throws InterruptedException{
+	public void e_ArrivalDate() throws InterruptedException, ParseException{
 		List<Action> Actions=getCurrentElement().getActions();
 		String ActionValue=Actions.get(0).getScript();
 		ArrivalDate=TrimAction(ActionValue, "Date=");
-		Calendar c = Calendar.getInstance();
-		c.setTime(new Date()); // Now use today date.
-		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-		Date today = Calendar.getInstance().getTime(); 
-		String AD = df.format(today);
-		if(ArrivalDate.equals("Today")){
-			AD=AD;
-		}else if(ArrivalDate.equals("Yesterday")){
-		
-			c.add(Calendar.DATE, -1);
-			AD=df.format(c);
-			
-		}else{
-			c.add(Calendar.DATE, (RandomNumber(2,31)));
-			AD=df.format(c);
-			
-		}
+		AD=dd.DealWithDates(ArrivalDate, "none");
 		
 		OL.Hotel_EnterArrival(AD);
+		
 	}
-	
-	public void e_LengthOfStay() throws NumberFormatException, InterruptedException{
+	/**
+	public void e_LengthOfStay() throws InterruptedException{
+		System.out.println("OL.Hotel_SelectLengthOfStay(2)");
+		OL.Hotel_SelectLengthOfStay(2);
+		System.out.println("WHAT IS GOING TO HAPPEN NEXT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		List<Action> Actions=getCurrentElement().getActions();
 		String ActionValue=Actions.get(0).getScript();
 		LOS=TrimAction(ActionValue, "LOS=");
 		System.out.println("Hey there!!!, LOS="+LOS);
 		LengthOfStay=Integer.parseInt(LOS);
 		System.out.println("Length of Stay="+LengthOfStay+".  This was Derived from LOS="+LOS);
-		OL.Hotel_SelectLengthOfStay(Integer.parseInt(LOS));
+		OL.Hotel_SelectLengthOfStay(LengthOfStay);
+	}
+	 * @throws InterruptedException 
+	**/
+	
+	public void e_LengthOfStay() throws InterruptedException{
+		System.out.println("HEY THERE WE MADE IT (Edge)!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		List<Action> Actions=getCurrentElement().getActions();
+		String ActionValue=Actions.get(0).getScript();
+		LOS=TrimAction(ActionValue, "LOS=");
+		LengthOfStay=Integer.parseInt(LOS);
+		OL.Hotel_SelectLengthOfStay(LengthOfStay);
 	}
 	
-	public void v_LenghtOfStay() throws NumberFormatException, InterruptedException{
-		OL.Hotel_VerifyLengthOfStay(Integer.parseInt(LOS));
+	public void v_LengthOfStay() throws NumberFormatException, InterruptedException{
+		System.out.println("HEY THERE WE MADE IT (Vertex)!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		System.out.println("I wonder if this works----");
+		OL.Hotel_VerifyLengthOfStay(LengthOfStay);
 	}
 	
 	public void v_DepartDate() throws NumberFormatException, ParseException, InterruptedException{
-		OL.Hotel_VerifyDepartDate(Integer.parseInt(LOS), ArrivalDate);
+		
+		OL.Hotel_VerifyDepartDate(Integer.parseInt(LOS), AD);
 	}
 	
 	public void e_Guests() throws NumberFormatException, InterruptedException{
@@ -117,6 +121,10 @@ public class HotelSearch_API extends ExecutionContext{
 	}
 	
 	public void v_Home(){
+		
+	}
+	
+	public void v_Nav(){
 		
 	}
 	

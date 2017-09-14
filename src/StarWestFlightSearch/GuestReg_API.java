@@ -7,6 +7,8 @@ import org.graphwalker.core.model.Action;
 
 public class GuestReg_API extends ExecutionContext {
 
+	public static StarWestFlightSearch.ObjectLibrary OL;
+	public static StarWestFlightSearch.DealWithDates DD;
 	public static String NumOfGuests;
 	public static int GuestRow;
 	
@@ -118,8 +120,8 @@ public class GuestReg_API extends ExecutionContext {
 		GuestRow= Integer.parseInt(NumOfGuests);
 	}
 	
-	public void e_Save(){
-		
+	public void e_Save() throws InterruptedException{
+		OL.ConfirmGuests();
 	}
 	
 	public void v_Home(){

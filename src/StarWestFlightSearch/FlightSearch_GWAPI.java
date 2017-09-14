@@ -3,6 +3,7 @@ package StarWestFlightSearch;
 
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -15,6 +16,7 @@ import org.graphwalker.core.model.Action;
 public class FlightSearch_GWAPI extends ExecutionContext{
 
 	public static StarWestFlightSearch.ObjectLibrary OL;
+	static StarWestFlightSearch.DealWithDates dd;
 	
 	public static int SR_Passengers;
 	public static int Passenger;
@@ -216,45 +218,13 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		OL.VerifyDestinationPort(ArriveIn);
 	}
 	
-	public void e_DepartDate() throws InterruptedException{
+	public void e_DepartDate() throws InterruptedException, ParseException{
 		List<Action> Actions=getCurrentElement().getActions();
 		String ActionValue=Actions.get(0).getScript();
 		DepartDateType=TrimAction(ActionValue, "DD=");
-		System.out.println("DepartDateType:  "+DepartDateType);
-		//Calendar c = Calendar.getInstance();
-		//c.setTime(new Date()); // Now use today date.
-		//c.add(Calendar.DATE, 5); // Adding 5 days
-		DepartDate=Calendar.getInstance();
-		if (DepartDateType=="Today"){
-			
-			
-			System.out.println("DepartDate:  "+DepartDate);
-			DepartDate_str=ReturnDateString(DepartDate);
-		}else if(DepartDateType=="Tomorrow"){
-			DepartDate.setTime(new Date()); // Now use today date.
-			System.out.println("DepartDate:  "+DepartDate);
-			DepartDate.add(Calendar.DATE, 1);
-			System.out.println("DepartDate:  "+DepartDate);
-			DepartDate_str=ReturnDateString(DepartDate);
-		}else if(DepartDateType=="Yesterday"){
-			DepartDate.setTime(new Date()); // Now use today date.
-			DepartDate.add(Calendar.DATE, -1);
-			System.out.println("DepartDate:  "+DepartDate);
-			DepartDate_str=ReturnDateString(DepartDate);
-		}else if(DepartDateType=="FutureDate"){
-			DepartDate.setTime(new Date()); // Now use today date.
-			DepartDate.add(Calendar.DATE, RandomNumber(2,31));
-			System.out.println("DepartDate:  "+DepartDate);
-			DepartDate_str=ReturnDateString(DepartDate);
-			
-		}else{
-			DepartDate=Calendar.getInstance();
-			System.out.println("DepartDate:  "+DepartDate);
-			DepartDate_str=ReturnDateString(DepartDate);
-			
-		}
-		System.out.println("DepartDate_str:  "+DepartDate_str);
+		DepartDate_str=dd.DealWithDates(DepartDateType, "none");
 		OL.EnterDepartDate(DepartDate_str);
+		System.out.println("DepartDate_str:"+DepartDate_str);
 		
 	}
 
@@ -262,57 +232,18 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		OL.VerifyDepartDate(DepartDate_str);
 	}
 	
-	public void e_ReturnDate() throws InterruptedException{
+	public void e_ReturnDate() throws InterruptedException, ParseException{
 		List<Action> Actions=getCurrentElement().getActions();
 		String ActionValue=Actions.get(0).getScript();
 		ReturnDateType=TrimAction(ActionValue, "RD=");
-		
-		//Calendar c = Calendar.getInstance();
-		//c.setTime(new Date()); // Now use today date.
-		//c.add(Calendar.DATE, 5); // Adding 5 days
-		if (ReturnDateType=="Today"){
-			ReturnDate.getInstance();
-			ReturnDate_str=ReturnDateString(ReturnDate);
-		}else if(ReturnDateType=="Tomorrow"){
-			ReturnDate.setTime(new Date()); // Now use today date.
-			ReturnDate.add(Calendar.DATE, 1);
-			ReturnDate_str=ReturnDateString(ReturnDate);
-		}else if(ReturnDateType=="FutureDate-1"){
-			if(DepartDateType=="FutureDate"){
-				ReturnDate=DepartDate;
-				ReturnDate.add(Calendar.DATE, -1);
-				ReturnDate_str=ReturnDateString(ReturnDate);
-			}else{
-				ReturnDate.setTime(new Date()); // Now use today date.
-				ReturnDate.add(Calendar.DATE, RandomNumber(2,31));
-				ReturnDate_str=ReturnDateString(ReturnDate);
-			}
-		}else if(ReturnDateType=="FutureDate"){
-			if(DepartDateType=="FutureDate"){
-				ReturnDate=DepartDate;
-				ReturnDate_str=ReturnDateString(ReturnDate);
-			}else{
-				ReturnDate.setTime(new Date()); // Now use today date.
-				ReturnDate.add(Calendar.DATE, RandomNumber(2,31));
-				ReturnDate_str=ReturnDateString(ReturnDate);
-			}
-		}else if(ReturnDateType=="FutureDate+1"){
-			if(DepartDateType=="FutureDate"){
-				ReturnDate=DepartDate;
-				ReturnDate.add(Calendar.DATE, +1);
-				ReturnDate_str=ReturnDateString(ReturnDate);
-			}else{
-				ReturnDate.setTime(new Date()); // Now use today date.
-				ReturnDate.add(Calendar.DATE, RandomNumber(2,31));
-				ReturnDate_str=ReturnDateString(ReturnDate);
-			}	
-		
+		if(ReturnDateType.equalsIgnoreCase("FutureDate+1")){
+			ReturnDate_str=dd.DealWithDates(ReturnDateType, DepartDate_str);
+		}else if(ReturnDateType.equalsIgnoreCase("FutureDate+1")){
+			ReturnDate_str=dd.DealWithDates(ReturnDateType, DepartDate_str);
 		}else{
-			ReturnDate=Calendar.getInstance();
-			ReturnDate_str=ReturnDateString(ReturnDate);
-			
+			ReturnDate_str=dd.DealWithDates(ReturnDateType, "none");
 		}
-		
+		System.out.println("ReturnDate_str:"+ReturnDate_str);
 		OL.EnterRetrunDate(ReturnDate_str);
 		
 	}
@@ -360,26 +291,12 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		
 	}
 	
-	public void e_SR_DOB_1() throws InterruptedException{
+	public void e_SR_DOB_1() throws InterruptedException, ParseException{
 		List<Action> Actions=getCurrentElement().getActions();
 		String ActionValue=Actions.get(0).getScript();
 		SRDOB1_Type=TrimAction(ActionValue, "SR1=");
-		if(SRDOB1_Type=="< 65 at Depart"){
-			SRDOB1=DepartDate;
-			SRDOB1.add(Calendar.YEAR,-RandomNumber(40,60));
-			SRDOB1_str=ReturnDateString(SRDOB1);
-		}else if(SRDOB1_Type=="> 65 at Depart"){
-			SRDOB1=DepartDate;
-			SRDOB1.add(Calendar.YEAR,-RandomNumber(66,90));
-			SRDOB1_str=ReturnDateString(SRDOB1);
-		}else if(SRDOB1_Type=="65 at Depart"){
-			SRDOB1=DepartDate;
-			SRDOB1.add(Calendar.YEAR,-65);
-			SRDOB1_str=ReturnDateString(SRDOB1);
-		}else{
-			SRDOB1_str=null;
-		}
-		
+		SRDOB1_str=dd.DOB_65(SRDOB1_Type, DepartDate_str);
+		System.out.println("SRDOB1_str:"+SRDOB1_str);
 		OL.EnterSr1DOB(SRDOB1_str);
 	}
 	
@@ -387,116 +304,58 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		OL.VerifySR1DOB(SRDOB1_str);
 	}
 	
-	public void e_SR_DOB_2() throws InterruptedException{
+	public void e_SR_DOB_2() throws InterruptedException, ParseException{
 		List<Action> Actions=getCurrentElement().getActions();
 		String ActionValue=Actions.get(0).getScript();
 		SRDOB2_Type=TrimAction(ActionValue, "SR2=");
-		if(SRDOB2_Type=="< 65 at Depart"){
-			SRDOB2=DepartDate;
-			SRDOB2.add(Calendar.YEAR,-RandomNumber(40,60));
-			SRDOB2_str=ReturnDateString(SRDOB2);
-		}else if(SRDOB2_Type=="> 65 at Depart"){
-			SRDOB2=DepartDate;
-			SRDOB2.add(Calendar.YEAR,-RandomNumber(66,90));
-			SRDOB2_str=ReturnDateString(SRDOB2);
-		}else if(SRDOB3_Type=="65 at Depart"){
-			SRDOB1=DepartDate;
-			SRDOB1.add(Calendar.YEAR,-65);
-			SRDOB1_str=ReturnDateString(SRDOB2);
-		}else{
-			SRDOB2_str=null;
-		}
+		SRDOB2_str=dd.DOB_65(SRDOB2_Type, DepartDate_str);
 		OL.EnterSr2DOB(SRDOB2_str);
+		System.out.println("SRDOB2_str:"+SRDOB2_str);
 	}
 	
 	public void v_SR_DOB2() throws InterruptedException{
 		OL.VerifySR2DOB(SRDOB2_str);
 	}
 	
-	public void e_SR_DOB_3() throws InterruptedException{
+	public void e_SR_DOB_3() throws InterruptedException, ParseException{
 		List<Action> Actions=getCurrentElement().getActions();
 		String ActionValue=Actions.get(0).getScript();
 		SRDOB3_Type=TrimAction(ActionValue, "SR3=");
-		if(SRDOB3_Type=="< 65 at Depart"){
-			SRDOB3=DepartDate;
-			SRDOB3.add(Calendar.YEAR,-RandomNumber(40,60));
-			SRDOB3_str=ReturnDateString(SRDOB3);
-		}else if(SRDOB3_Type=="> 65 at Depart"){
-			SRDOB3=DepartDate;
-			SRDOB3.add(Calendar.YEAR,-RandomNumber(66,90));
-			SRDOB3_str=ReturnDateString(SRDOB3);
-		}else if(SRDOB3_Type=="65 at Depart"){
-			SRDOB3=DepartDate;
-			SRDOB3.add(Calendar.YEAR,-65);
-			SRDOB3_str=ReturnDateString(SRDOB3);
-		}else{
-			SRDOB3_str=null;
-		}
+		SRDOB3_str=dd.DOB_65(SRDOB3_Type, DepartDate_str);
 		OL.EnterSr3DOB(SRDOB3_str);
+		System.out.println("SRDOB3_str:"+SRDOB3_str);
 	}
 	
 	public void v_SR_DOB3() throws InterruptedException{
 		OL.VerifySR3DOB(SRDOB3_str);
 	}
 	
-	public void e_SR_DOB_4() throws InterruptedException{
+	public void e_SR_DOB_4() throws InterruptedException, ParseException{
 		List<Action> Actions=getCurrentElement().getActions();
 		String ActionValue=Actions.get(0).getScript();
 		SRDOB4_Type=TrimAction(ActionValue, "SR4=");
-		if(SRDOB4_Type=="< 65 at Depart"){
-			SRDOB4=DepartDate;
-			SRDOB4.add(Calendar.YEAR,-RandomNumber(40,60));
-			SRDOB4_str=ReturnDateString(SRDOB4);
-		}else if(SRDOB4_Type=="> 65 at Depart"){
-			SRDOB4=DepartDate;
-			SRDOB4.add(Calendar.YEAR,-RandomNumber(66,90));
-			SRDOB4_str=ReturnDateString(SRDOB4);
-		}else if(SRDOB4_Type=="65 at Depart"){
-			SRDOB4=DepartDate;
-			SRDOB4.add(Calendar.YEAR,-65);
-			SRDOB4_str=ReturnDateString(SRDOB4);
-		}else{
-			SRDOB4_str=null;
-		}
+		SRDOB4_str=dd.DOB_65(SRDOB4_Type, DepartDate_str);
 		OL.EnterSr4DOB(SRDOB4_str);
+		System.out.println("SRDOB4_str:"+SRDOB4_str);
 	}
 	
 	public void v_SR_DOB4() throws InterruptedException{
 		OL.VerifySR4DOB(SRDOB4_str);
 	}
 	
-	public void e_LCDOB1() throws InterruptedException{
+	public void e_LCDOB1() throws InterruptedException, ParseException{
+		
 		List<Action> Actions=getCurrentElement().getActions();
 		String ActionValue=Actions.get(0).getScript();
-		LCDOB1_Type=TrimAction(ActionValue, "LC1=");
-		if(LCDOB1_Type==">2 at Return"){
-			LCDOB1=ReturnDate;
-			LCDOB1.add(Calendar.YEAR,RandomNumber(3,10));
-			LCDOB1_str=ReturnDateString(LCDOB1);
-		}else if(LCDOB1_Type=="2 at Return"){
-			LCDOB1=ReturnDate;
-			LCDOB1.add(Calendar.YEAR,-2);
-			LCDOB1_str=ReturnDateString(LCDOB1);
-		}else if(LCDOB1_Type=="<2 at Return"){
-			LCDOB1=ReturnDate;
-			LCDOB1.add(Calendar.YEAR,-1);
-			LCDOB1_str=ReturnDateString(LCDOB1);
-		}else if(LCDOB1_Type=="2 at Depart"){
-			LCDOB1=DepartDate;
-			LCDOB1.add(Calendar.YEAR,-2);
-			LCDOB1_str=ReturnDateString(LCDOB1);
-		}else if(LCDOB1_Type=="<2 at Depart"){
-			LCDOB1=DepartDate;
-			LCDOB1.add(Calendar.YEAR,-1);
-			LCDOB1_str=ReturnDateString(LCDOB1);
-		}else if(LCDOB1_Type==">2 at Depart"){
-			LCDOB1=DepartDate;
-			LCDOB1.add(Calendar.YEAR,RandomNumber(3,10));
-			LCDOB1_str=ReturnDateString(LCDOB1);
-			
+		LCDOB1_Type=TrimAction(ActionValue, "LCDOB1=");
+		String passDate=null;
+		if(TripType.equals("One Way")){
+			passDate=DepartDate_str;
 		}else{
-			LCDOB1_str=null;
+			passDate=ReturnDate_str;
 		}
+		LCDOB1_str=dd.DOB_2(LCDOB1_Type, passDate);
+		System.out.println("LCDOB1_str= "+LCDOB1_str);
 		OL.EnterLC1DOB(LCDOB1_str);
 	}
 	
@@ -504,38 +363,19 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		OL.VerifyLC1DOB(LCDOB1_str);
 	}
 	
-	public void e_LCDOB2() throws InterruptedException{
+	public void e_LCDOB2() throws InterruptedException, ParseException{
+		
 		List<Action> Actions=getCurrentElement().getActions();
 		String ActionValue=Actions.get(0).getScript();
-		LCDOB2_Type=TrimAction(ActionValue, "LC1=");
-		if(LCDOB2_Type==">2 at Return"){
-			LCDOB2=ReturnDate;
-			LCDOB2.add(Calendar.YEAR,RandomNumber(3,10));
-			LCDOB2_str=ReturnDateString(LCDOB2);
-		}else if(LCDOB2_Type=="2 at Return"){
-			LCDOB2=ReturnDate;
-			LCDOB2.add(Calendar.YEAR,-2);
-			LCDOB2_str=ReturnDateString(LCDOB2);
-		}else if(LCDOB2_Type=="<2 at Return"){
-			LCDOB2=ReturnDate;
-			LCDOB2.add(Calendar.YEAR,-1);
-			LCDOB2_str=ReturnDateString(LCDOB2);
-		}else if(LCDOB2_Type=="2 at Depart"){
-			LCDOB2=DepartDate;
-			LCDOB2.add(Calendar.YEAR,-2);
-			LCDOB2_str=ReturnDateString(LCDOB2);
-		}else if(LCDOB2_Type=="<2 at Depart"){
-			LCDOB2=DepartDate;
-			LCDOB2.add(Calendar.YEAR,-1);
-			LCDOB2_str=ReturnDateString(LCDOB2);
-		}else if(LCDOB2_Type==">2 at Depart"){
-			LCDOB2=DepartDate;
-			LCDOB2.add(Calendar.YEAR,RandomNumber(3,10));
-			LCDOB2_str=ReturnDateString(LCDOB2);
-			
+		LCDOB2_Type=TrimAction(ActionValue, "LCDOB2=");
+		String passDate=null;
+		if(TripType.equals("One Way")){
+			passDate=DepartDate_str;
 		}else{
-			LCDOB2_str=null;
+			passDate=ReturnDate_str;
 		}
+		LCDOB2_str=dd.DOB_2(LCDOB2_Type, passDate);
+		System.out.println("LCDOB2_str= "+LCDOB2_str);
 		OL.EnterLC2DOB(LCDOB2_str);
 	}
 	
@@ -543,38 +383,19 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		OL.VerifyLC2DOB(LCDOB2_str);
 	}
 	
-	public void e_LCDOB3() throws InterruptedException{
+	public void e_LCDOB3() throws InterruptedException, ParseException{
+		
 		List<Action> Actions=getCurrentElement().getActions();
 		String ActionValue=Actions.get(0).getScript();
-		LCDOB3_Type=TrimAction(ActionValue, "LC1=");
-		if(LCDOB3_Type==">2 at Return"){
-			LCDOB3=ReturnDate;
-			LCDOB3.add(Calendar.YEAR,RandomNumber(3,10));
-			LCDOB3_str=ReturnDateString(LCDOB3);
-		}else if(LCDOB3_Type=="2 at Return"){
-			LCDOB3=ReturnDate;
-			LCDOB3.add(Calendar.YEAR,-2);
-			LCDOB3_str=ReturnDateString(LCDOB3);
-		}else if(LCDOB3_Type=="<2 at Return"){
-			LCDOB3=ReturnDate;
-			LCDOB3.add(Calendar.YEAR,-1);
-			LCDOB3_str=ReturnDateString(LCDOB3);
-		}else if(LCDOB3_Type=="2 at Depart"){
-			LCDOB3=DepartDate;
-			LCDOB3.add(Calendar.YEAR,-2);
-			LCDOB3_str=ReturnDateString(LCDOB3);
-		}else if(LCDOB3_Type=="<2 at Depart"){
-			LCDOB3=DepartDate;
-			LCDOB3.add(Calendar.YEAR,-1);
-			LCDOB3_str=ReturnDateString(LCDOB3);
-		}else if(LCDOB3_Type==">2 at Depart"){
-			LCDOB3=DepartDate;
-			LCDOB3.add(Calendar.YEAR,RandomNumber(3,10));
-			LCDOB3_str=ReturnDateString(LCDOB3);
-			
+		LCDOB3_Type=TrimAction(ActionValue, "LCDOB3=");
+		String passDate=null;
+		if(TripType.equals("One Way")){
+			passDate=DepartDate_str;
 		}else{
-			LCDOB3_str=null;
+			passDate=ReturnDate_str;
 		}
+		LCDOB3_str=dd.DOB_2(LCDOB3_Type, passDate);
+		System.out.println("LCDOB3_str= "+LCDOB3_str);
 		OL.EnterLC3DOB(LCDOB3_str);
 	}
 	
@@ -583,38 +404,18 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		OL.VerifyLC3DOB(LCDOB3_str);
 	}
 	
-	public void e_LCDOB4() throws InterruptedException{
+	public void e_LCDOB4() throws InterruptedException, ParseException{
 		List<Action> Actions=getCurrentElement().getActions();
 		String ActionValue=Actions.get(0).getScript();
-		LCDOB4_Type=TrimAction(ActionValue, "LC1=");
-		if(LCDOB4_Type==">2 at Return"){
-			LCDOB4=ReturnDate;
-			LCDOB4.add(Calendar.YEAR,RandomNumber(3,10));
-			LCDOB4_str=ReturnDateString(LCDOB4);
-		}else if(LCDOB4_Type=="2 at Return"){
-			LCDOB4=ReturnDate;
-			LCDOB4.add(Calendar.YEAR,-2);
-			LCDOB4_str=ReturnDateString(LCDOB4);
-		}else if(LCDOB4_Type=="<2 at Return"){
-			LCDOB4=ReturnDate;
-			LCDOB4.add(Calendar.YEAR,-1);
-			LCDOB4_str=ReturnDateString(LCDOB4);
-		}else if(LCDOB4_Type=="2 at Depart"){
-			LCDOB4=DepartDate;
-			LCDOB4.add(Calendar.YEAR,-2);
-			LCDOB4_str=ReturnDateString(LCDOB4);
-		}else if(LCDOB4_Type=="<2 at Depart"){
-			LCDOB4=DepartDate;
-			LCDOB4.add(Calendar.YEAR,-1);
-			LCDOB4_str=ReturnDateString(LCDOB4);
-		}else if(LCDOB4_Type==">2 at Depart"){
-			LCDOB4=DepartDate;
-			LCDOB4.add(Calendar.YEAR,RandomNumber(3,10));
-			LCDOB4_str=ReturnDateString(LCDOB4);
-			
+		LCDOB4_Type=TrimAction(ActionValue, "LCDOB4=");
+		String passDate=null;
+		if(TripType.equals("One Way")){
+			passDate=DepartDate_str;
 		}else{
-			LCDOB4_str=null;
+			passDate=ReturnDate_str;
 		}
+		LCDOB4_str=dd.DOB_2(LCDOB1_Type, passDate);
+		System.out.println("LCDOB4_str= "+LCDOB4_str);
 		OL.EnterLC4DOB(LCDOB4_str);
 	}
 	
@@ -622,7 +423,7 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		OL.VerifyLC4DOB(LCDOB4_str);
 	}
 	
-	public void v_Submit() throws InterruptedException{
+	public void e_Submit() throws InterruptedException{
 		OL.SubmitFlightSearch();
 	}
 	
@@ -648,6 +449,10 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 	
 	public void v_Error6() throws InterruptedException{
 		OL.ErrorLapChildDOB();
+		
+	}
+	
+	public void v_Error7()throws InterruptedException{
 		
 	}
 	
