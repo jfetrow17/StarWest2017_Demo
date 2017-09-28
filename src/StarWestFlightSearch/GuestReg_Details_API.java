@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -25,6 +26,13 @@ public class GuestReg_Details_API extends ExecutionContext {
 	public static String LastName;
 	public static String DateOfBirth;
 	public static String PassportID;
+	static DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+	static Date date = new Date();
+	public static String TodaysDate=dateFormat.format(date);
+	public static String Description;
+	public static String Expected;
+	public static String Result;
+	
 	public void v_CompleteDetails(){
 		//Nav only
 	}
@@ -113,33 +121,15 @@ public class GuestReg_Details_API extends ExecutionContext {
 		String ActionValue=Actions.get(0).getScript();
 		DOB=TrimAction(ActionValue, "DOB=");
 		if(DOB!="null"){
-			int Month =RandomNumber(1,12);
-			int Day= RandomNumber(1,28);
+			int Month =RandomNumber(1,9);
+			int Day= RandomNumber(10,28);
 			int Yr= RandomNumber(1950, 2016);
 			String mm=null;
 			String dd=null;
 			
-				mm="0"+String.valueOf(Month);
-				dd="0"+String.valueOf(Day);
 			
-			String DateOB=mm+dd+String.valueOf(Yr);
-			String x="1";
-			String y="1";
-			String z="1900";
-			if(DateOB.substring(0,1).equals("0")){
-				x=DateOB.substring(1,2);
-			}else{
-				x=DateOB.substring(0,2);
-			}
-			
-			if(DateOB.substring(3,4).equals("0")){
-				y=DateOB.substring(4,5);
-			}else{
-				y=DateOB.substring(3, 5);
-			}
-			z=String.valueOf(Yr);
-			DateOfBirth=x+"/"+y+"/"+z;
-			OL.EnterDOB(GuestRow, DateOB);
+			DateOfBirth="0"+Month+"/"+Day+"/"+Yr;
+			OL.EnterDOB(GuestRow, DateOfBirth);
 		}else{
 		//Do Nothing	
 			DateOfBirth=null;
@@ -161,10 +151,10 @@ public class GuestReg_Details_API extends ExecutionContext {
 		List<Action> Actions=getCurrentElement().getActions();
 		String ActionValue=Actions.get(0).getScript();
 		Gender=TrimAction(ActionValue, "S=");
-		if(Gender=="F"){
+		if(Gender.equalsIgnoreCase("F")){
 			Gender="Female";
 			
-		}else if(Gender=="M"){
+		}else if(Gender.equalsIgnoreCase("M")){
 			Gender="Male";
 		}else{
 			//Do Nothing

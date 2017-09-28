@@ -1,5 +1,8 @@
 package StarWestFlightSearch;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.graphwalker.core.machine.ExecutionContext;
@@ -9,8 +12,15 @@ public class GuestReg_API extends ExecutionContext {
 
 	public static StarWestFlightSearch.ObjectLibrary OL;
 	public static StarWestFlightSearch.DealWithDates DD;
+	public static StarWestFlightSearch.LoggingFunctions LF;
 	public static String NumOfGuests;
 	public static int GuestRow;
+	static DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+	static Date date = new Date();
+	public static String TodaysDate=dateFormat.format(date);
+	public static String Description;
+	public static String Expected;
+	public static String Result;
 	
 	public void e_Start(){
 		//For Nav only
@@ -18,6 +28,8 @@ public class GuestReg_API extends ExecutionContext {
 	
 	public void v_GuestRegistration(){
 		//Verifies Guest Reg Page Displayed
+		Result="Pass";
+		LF.AddActualResult(Result);
 	}
 	
 	public void v_Verify_Guest1_Displayed(){
@@ -124,7 +136,7 @@ public class GuestReg_API extends ExecutionContext {
 		OL.ConfirmGuests();
 	}
 	
-	public void v_Home(){
+	public void v_ReturnHome3(){
 		
 	}
 	

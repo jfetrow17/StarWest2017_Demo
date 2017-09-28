@@ -532,7 +532,7 @@
 									em5.style.display='none';
 								}
 								
-								if ((new Date(partsdd[0], partsdd[1]-1, partsdd[2]))>(new Date(partsrd[0], partsrd[1]-1, partsrd[2]))){
+								if ((new Date(partsdd[0], partsdd[1]-1, partsdd[2]))>=(new Date(partsrd[0], partsrd[1]-1, partsrd[2]))&&(o6.value=="roundtrip")){
 									ef2=1;
 									em1.style.display='block'; 
 								}else{
@@ -568,7 +568,7 @@
 									if(o3.value=="1"){
 										
 										var lc1=new Date(lc1parts[0], lc1parts[1]-1, lc1parts[2]);
-										if (lc1>yr2){
+										if (lc1<yr2){
 											ef3=1;
 											em2.style.display='block';
 										}else{
@@ -578,7 +578,7 @@
 									}else if(o3.value=="2"){
 										var lc1=new Date(lc1parts[0], lc1parts[1]-1, lc1parts[2]);
 										var lc2=new Date(lc2parts[0], lc2parts[1]-1, lc2parts[2]);
-										if ((lc1>yr2) || (lc2>yr2)){
+										if ((lc1<yr2) || (lc2<yr2)){
 											ef3=1;
 											em2.style.display='block';
 										}else{
@@ -589,7 +589,7 @@
 										var lc1=new Date(lc1parts[0], lc1parts[1]-1, lc1parts[2]);
 										var lc2=new Date(lc2parts[0], lc2parts[1]-1, lc2parts[2]);
 										var lc3=new Date(lc3parts[0], lc3parts[1]-1, lc3parts[2]);
-										if ((lc1>yr2) || (lc2>yr2) || (lc3>yr2)){
+										if ((lc1<yr2) || (lc2<yr2) || (lc3<yr2)){
 											ef3=1;
 											em2.style.display='block';
 										}else{
@@ -601,7 +601,7 @@
 										var lc2=new Date(lc2parts[0], lc2parts[1]-1, lc2parts[2]);
 										var lc3=new Date(lc3parts[0], lc3parts[1]-1, lc3parts[2]);
 										var lc4=new Date(lc4parts[0], lc4parts[1]-1, lc4parts[2]);
-										if ((lc1>yr2) || (lc2>yr2) || (lc3>yr2)|| (lc4>yr2)){
+										if ((lc1<yr2) || (lc2<yr2) || (lc3<yr2)|| (lc4<yr2)){
 											ef3=1;
 											em2.style.display='block';
 										}else{
@@ -632,7 +632,7 @@
 								if(o1.value!="0"){
 																	
 								
-									if (o1.value=1){
+									if (o1.value==1){
 										var sr1= new Date(sr1parts[0],sr1parts[1]-1,sr1parts[2]);
 										if(sr1>yr65){
 											ef1=1;
@@ -641,7 +641,7 @@
 											ef1=0;
 											em3.style.display='none'; 
 										}	
-									}else if(o1.value=2){
+									}else if(o1.value==2){
 										var sr1= new Date(sr1parts[0],sr1parts[1]-1,sr1parts[2]);
 										var sr2= new Date(sr2parts[0],sr2parts[1]-1,sr2parts[2]);
 										if((sr1>yr65)||(sr2>yr65)){
@@ -651,7 +651,7 @@
 											ef1=0;
 											em3.style.display='none'; 
 										} 
-									}else if(o1.value=3){
+									}else if(o1.value==3){
 										var sr1= new Date(sr1parts[0],sr1parts[1]-1,sr1parts[2]);
 										var sr2= new Date(sr2parts[0],sr2parts[1]-1,sr2parts[2]);
 										var sr3= new Date(sr3parts[0],sr3parts[1]-1,sr3parts[2]);
@@ -662,7 +662,7 @@
 											ef1=0;
 											em3.style.display='none'; 
 										}
-									}else if(o1.value=4){
+									}else if(o1.value==4){
 										var sr1= new Date(sr1parts[0],sr1parts[1]-1,sr1parts[2]);
 										var sr2= new Date(sr2parts[0],sr2parts[1]-1,sr2parts[2]);
 										var sr3= new Date(sr3parts[0],sr3parts[1]-1,sr3parts[2]);

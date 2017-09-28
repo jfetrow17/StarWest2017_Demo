@@ -17,6 +17,7 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 
 	public static StarWestFlightSearch.ObjectLibrary OL;
 	static StarWestFlightSearch.DealWithDates dd;
+	public static StarWestFlightSearch.LoggingFunctions LF;
 	
 	public static int SR_Passengers;
 	public static int Passenger;
@@ -56,6 +57,12 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 	public static String LCDOB4_Type;
 	public static String LCDOB4_str;
 	public static Calendar LCDOB4;
+	static DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+	static Date date = new Date();
+	public static String TodaysDate=dateFormat.format(date);
+	public static String Description;
+	public static String Expected;
+	public static String Result;
 	
 	
 	public void e_Start(){
@@ -69,211 +76,348 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 	public void e_SR_1() throws InterruptedException{
 		SR_Passengers=1;
 		OL.SelectSRPass(SR_Passengers);
+		Description="User selects "+SR_Passengers+" from the Sr Passengers Dropdown";
+		Expected=SR_Passengers+" is selected in the Sr Passengers Dropdown.";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_SR_2() throws InterruptedException{
 		SR_Passengers=2;
 		OL.SelectSRPass(SR_Passengers);
+		Description="User selects "+SR_Passengers+" from the Sr Passengers Dropdown";
+		Expected=SR_Passengers+" is selected in the Sr Passengers Dropdown.";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_SR_3() throws InterruptedException{
 		SR_Passengers=3;
 		OL.SelectSRPass(SR_Passengers);
+		Description="User selects "+SR_Passengers+" from the Sr Passengers Dropdown";
+		Expected=SR_Passengers+" is selected in the Sr Passengers Dropdown.";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_SR_4() throws InterruptedException{
 		SR_Passengers=4;
 		OL.SelectSRPass(SR_Passengers);
+		Description="User selects "+SR_Passengers+" from the Sr Passengers Dropdown";
+		Expected=SR_Passengers+" is selected in the Sr Passengers Dropdown.";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_SR_0() throws InterruptedException{
 		SR_Passengers=0;
 		OL.SelectSRPass(SR_Passengers);
+		Description="User selects "+SR_Passengers+" from the Sr Passengers Dropdown";
+		Expected=SR_Passengers+" is selected in the Sr Passengers Dropdown.";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void v_Sr_Passengers() throws InterruptedException{
-		OL.VerifySrPassengers(SR_Passengers);
+		Result=OL.VerifySrPassengers(SR_Passengers);
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_Passenger_0() throws InterruptedException{
 		Passenger=0;
 		OL.SelectPassengers(Passenger);
+		Description="User selects "+Passenger+" from the Passengers Dropdown";
+		Expected=Passenger+" is selected in the Passengers Dropdown.";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_Passenger_1() throws InterruptedException{
 		Passenger=1;
 		OL.SelectPassengers(Passenger);
+		Description="User selects "+Passenger+" from the Passengers Dropdown";
+		Expected=Passenger+" is selected in the Passengers Dropdown.";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_Passenger_2() throws InterruptedException{
 		Passenger=2;
 		OL.SelectPassengers(Passenger);
+		
+		Description="User selects "+Passenger+" from the Passengers Dropdown";
+		Expected=Passenger+" is selected in the Passengers Dropdown.";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_Passenger_3() throws InterruptedException{
 		Passenger=3;
 		OL.SelectPassengers(Passenger);
+		
+		Description="User selects "+Passenger+" from the Passengers Dropdown";
+		Expected=Passenger+" is selected in the Passengers Dropdown.";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_Passenger_4() throws InterruptedException{
 		Passenger=4;
 		OL.SelectPassengers(Passenger);
+		
+		Description="User selects "+Passenger+" from the Passengers Dropdown";
+		Expected=Passenger+" is selected in the Passengers Dropdown.";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void v_Passengers() throws InterruptedException{
-		OL.VerifyPassengers(Passenger);
+		Result=OL.VerifyPassengers(Passenger);
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_LC_0() throws InterruptedException{
 		LapChild_Passengers=0;
 		OL.SelectLCPass(LapChild_Passengers);
+		
+		Description="User selects "+LapChild_Passengers+" from the Lap Children Dropdown";
+		Expected=LapChild_Passengers+" is selected in the Lap Children Dropdown.";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_LC_1() throws InterruptedException{
 		LapChild_Passengers=1;
 		OL.SelectLCPass(LapChild_Passengers);
+		Description="User selects "+LapChild_Passengers+" from the Lap Children Dropdown";
+		Expected=LapChild_Passengers+" is selected in the Lap Children Dropdown.";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_LC_2() throws InterruptedException{
 		LapChild_Passengers=2;
 		OL.SelectLCPass(LapChild_Passengers);
+		Description="User selects "+LapChild_Passengers+" from the Lap Children Dropdown";
+		Expected=LapChild_Passengers+" is selected in the Lap Children Dropdown.";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_LC_3() throws InterruptedException{
 		LapChild_Passengers=3;
 		OL.SelectLCPass(LapChild_Passengers);
+		Description="User selects "+LapChild_Passengers+" from the Lap Children Dropdown";
+		Expected=LapChild_Passengers+" is selected in the Lap Children Dropdown.";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_LC_4() throws InterruptedException{
 		LapChild_Passengers=4;
 		OL.SelectLCPass(LapChild_Passengers);
+		Description="User selects "+LapChild_Passengers+" from the Lap Children Dropdown";
+		Expected=LapChild_Passengers+" is selected in the Lap Children Dropdown.";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void v_Lap_Child_Passengers() throws InterruptedException{
-		OL.VerifyLapPassengers(LapChild_Passengers);
-		
+		Result=OL.VerifyLapPassengers(LapChild_Passengers);
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_RoundTrip() throws InterruptedException{
 		TripType="Round Trip";
 		OL.SelectTripType(TripType);
+		Description="User selects "+TripType+" as Trip type.";
+		Expected=TripType+"selected";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_OneWay() throws InterruptedException{
 		TripType="One Way";
 		OL.SelectTripType(TripType);
+		Description="User selects "+TripType+" as Trip type.";
+		Expected=TripType+"selected";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void v_TripType() throws InterruptedException{
-		OL.VerifyTripType(TripType);
-		
+		Result=OL.VerifyTripType(TripType);
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_Depart_Frankfurt() throws InterruptedException{
 		DepartFrom="Frankfurt";
 		OL.SelectDeparturePort(DepartFrom);
+		Description="User selects "+DepartFrom+" from the Departure City dropdown.";
+		Expected= DepartFrom+" is selected";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_Depart_Paris() throws InterruptedException{
 		DepartFrom="Paris";
 		OL.SelectDeparturePort(DepartFrom);
+		Description="User selects "+DepartFrom+" from the Departure City dropdown.";
+		Expected= DepartFrom+" is selected";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_Depart_NewYork() throws InterruptedException{
 		DepartFrom="New York";
 		OL.SelectDeparturePort(DepartFrom);
+		Description="User selects "+DepartFrom+" from the Departure City dropdown.";
+		Expected= DepartFrom+" is selected";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_Depart_London() throws InterruptedException{
 		DepartFrom="London";
 		OL.SelectDeparturePort(DepartFrom);
+		Description="User selects "+DepartFrom+" from the Departure City dropdown.";
+		Expected= DepartFrom+" is selected";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void v_DepartureCity() throws InterruptedException{
-		OL.VerifyDeparturePort(DepartFrom);
+		Result=OL.VerifyDeparturePort(DepartFrom);
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_Arrive_Frankfurt() throws InterruptedException{
 		ArriveIn="Frankfurt";
 		OL.SelectDestinationPort(ArriveIn);
+		Description="User selects "+ArriveIn+" from the Destination City dropdown.";
+		Expected= ArriveIn+" is selected";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_Arrive_Paris() throws InterruptedException{
 		ArriveIn="Paris";
 		OL.SelectDestinationPort(ArriveIn);
+		Description="User selects "+ArriveIn+" from the Destination City dropdown.";
+		Expected= ArriveIn+" is selected";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_Arrive_NewYork() throws InterruptedException{
 		ArriveIn="New York";
 		OL.SelectDestinationPort(ArriveIn);
+		Description="User selects "+ArriveIn+" from the Destination City dropdown.";
+		Expected= ArriveIn+" is selected";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_Arrive_London() throws InterruptedException{
 		ArriveIn="London";
 		OL.SelectDestinationPort(ArriveIn);
+		Description="User selects "+ArriveIn+" from the Destination City dropdown.";
+		Expected= ArriveIn+" is selected";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	
 	public void v_DestinationCity() throws InterruptedException{
-		OL.VerifyDestinationPort(ArriveIn);
+		Result=OL.VerifyDestinationPort(ArriveIn);
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_DepartDate() throws InterruptedException, ParseException{
 		List<Action> Actions=getCurrentElement().getActions();
 		String ActionValue=Actions.get(0).getScript();
 		DepartDateType=TrimAction(ActionValue, "DD=");
-		DepartDate_str=dd.DealWithDates(DepartDateType, "none");
+		DepartDate_str=dd.DealWithDates(DepartDateType, "none", "none");
 		OL.EnterDepartDate(DepartDate_str);
-		System.out.println("DepartDate_str:"+DepartDate_str);
-		
+		Description="User enters "+DepartDate_str+" in the Departure date field.";
+		Expected=DepartDate_str+" is entered in Departure Date field.";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 
 	public void v_DepartDate() throws InterruptedException{
-		OL.VerifyDepartDate(DepartDate_str);
+		Result=OL.VerifyDepartDate(DepartDate_str);
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_ReturnDate() throws InterruptedException, ParseException{
 		List<Action> Actions=getCurrentElement().getActions();
 		String ActionValue=Actions.get(0).getScript();
 		ReturnDateType=TrimAction(ActionValue, "RD=");
-		if(ReturnDateType.equalsIgnoreCase("FutureDate+1")){
-			ReturnDate_str=dd.DealWithDates(ReturnDateType, DepartDate_str);
-		}else if(ReturnDateType.equalsIgnoreCase("FutureDate+1")){
-			ReturnDate_str=dd.DealWithDates(ReturnDateType, DepartDate_str);
+		if(DepartDateType.equalsIgnoreCase(ReturnDateType)){
+			ReturnDate_str=DepartDate_str;
 		}else{
-			ReturnDate_str=dd.DealWithDates(ReturnDateType, "none");
+			if(ReturnDateType.equalsIgnoreCase("FutureDate+1")){
+				ReturnDate_str=dd.DealWithDates(ReturnDateType, DepartDate_str, DepartDateType);
+			}else if(ReturnDateType.equalsIgnoreCase("FutureDate-1")){
+				ReturnDate_str=dd.DealWithDates(ReturnDateType, DepartDate_str, DepartDateType);
+			}else{
+				ReturnDate_str=dd.DealWithDates(ReturnDateType, "none", DepartDateType);
+			}
 		}
 		System.out.println("ReturnDate_str:"+ReturnDate_str);
 		OL.EnterRetrunDate(ReturnDate_str);
+		Description="User enters "+ReturnDate_str+" in the Return date field.";
+		Expected=ReturnDate_str+"is entered in Return Date field.";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 		
 	}
 	
 	public void v_ReturnDate() throws InterruptedException{
-		OL.VerifyReturnDate(ReturnDate_str);
+		Result=OL.VerifyReturnDate(ReturnDate_str);
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_Class_First() throws InterruptedException{
 		SeatClass="firstclass";
 		OL.SelectSeatType(SeatClass);
+		Description="User selects "+SeatClass+" as their seat preference.";
+		Expected=SeatClass+" is selected";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_Class_Coach() throws InterruptedException{
 		SeatClass="coach";
 		OL.SelectSeatType(SeatClass);
+		Description="User selects "+SeatClass+" as their seat preference.";
+		Expected=SeatClass+" is selected";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 
 	public void e_Class_Business() throws InterruptedException{
 		SeatClass="business";
 		OL.SelectSeatType(SeatClass);
+		Description="User selects "+SeatClass+" as their seat preference.";
+		Expected=SeatClass+" is selected";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void e_Class_Any() throws InterruptedException{
 		SeatClass="any";
 		OL.SelectSeatType(SeatClass);
+		Description="User selects "+SeatClass+" as their seat preference.";
+		Expected=SeatClass+" is selected";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void v_SeatPrefernce() throws InterruptedException{
-		OL.VerifySeatType(SeatClass);
+		Result=OL.VerifySeatType(SeatClass);
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_Airline() throws InterruptedException{
@@ -281,10 +425,15 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		String ActionValue=Actions.get(0).getScript();
 		Airline=TrimAction(ActionValue, "Airline=");
 		OL.SelectAirline(Airline);
+		Description="User selects "+Airline+" as their preferred.";
+		Expected=Airline+" is selected";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void v_PreferedAirline() throws InterruptedException{
-		OL.VerifyAirline(Airline);
+		Result=OL.VerifyAirline(Airline);
+		LF.AddActualResult(Result);
 	}
 	
 	public void v_SrDOB_Check(){
@@ -298,10 +447,15 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		SRDOB1_str=dd.DOB_65(SRDOB1_Type, DepartDate_str);
 		System.out.println("SRDOB1_str:"+SRDOB1_str);
 		OL.EnterSr1DOB(SRDOB1_str);
+		Description="User enters "+SRDOB1_str+" in the 1st Senior Date of Birth field.";
+		Expected=SRDOB1_str+"is entered in the 1st Senior Date of Birth field";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void v_SR_DOB1() throws InterruptedException{
-		OL.VerifySR1DOB(SRDOB1_str);
+		Result=OL.VerifySR1DOB(SRDOB1_str);
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_SR_DOB_2() throws InterruptedException, ParseException{
@@ -311,10 +465,15 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		SRDOB2_str=dd.DOB_65(SRDOB2_Type, DepartDate_str);
 		OL.EnterSr2DOB(SRDOB2_str);
 		System.out.println("SRDOB2_str:"+SRDOB2_str);
+		Description="User enters "+SRDOB2_str+" in the 2nd Senior Date of Birth field.";
+		Expected=SRDOB2_str+"is entered in the 2nd Senior Date of Birth field";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void v_SR_DOB2() throws InterruptedException{
-		OL.VerifySR2DOB(SRDOB2_str);
+		Result=OL.VerifySR2DOB(SRDOB2_str);
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_SR_DOB_3() throws InterruptedException, ParseException{
@@ -324,10 +483,15 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		SRDOB3_str=dd.DOB_65(SRDOB3_Type, DepartDate_str);
 		OL.EnterSr3DOB(SRDOB3_str);
 		System.out.println("SRDOB3_str:"+SRDOB3_str);
+		Description="User enters "+SRDOB3_str+" in the 3rd Senior Date of Birth field.";
+		Expected=SRDOB3_str+"is entered in the 3rd Senior Date of Birth field";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void v_SR_DOB3() throws InterruptedException{
-		OL.VerifySR3DOB(SRDOB3_str);
+		Result=OL.VerifySR3DOB(SRDOB3_str);
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_SR_DOB_4() throws InterruptedException, ParseException{
@@ -337,10 +501,15 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		SRDOB4_str=dd.DOB_65(SRDOB4_Type, DepartDate_str);
 		OL.EnterSr4DOB(SRDOB4_str);
 		System.out.println("SRDOB4_str:"+SRDOB4_str);
+		Description="User enters "+SRDOB4_str+" in the 4th Senior Date of Birth field.";
+		Expected=SRDOB4_str+"is entered in the 4th Senior Date of Birth field";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void v_SR_DOB4() throws InterruptedException{
-		OL.VerifySR4DOB(SRDOB4_str);
+		Result=OL.VerifySR4DOB(SRDOB4_str);
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_LCDOB1() throws InterruptedException, ParseException{
@@ -357,10 +526,15 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		LCDOB1_str=dd.DOB_2(LCDOB1_Type, passDate);
 		System.out.println("LCDOB1_str= "+LCDOB1_str);
 		OL.EnterLC1DOB(LCDOB1_str);
+		Description="User enters "+LCDOB1_str+" in the 1st Lap Child  Date of Birth field.";
+		Expected=LCDOB1_str+"is entered in the 1st  Lap Child  Date of Birth field";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void v_LC_DOB1() throws InterruptedException{
-		OL.VerifyLC1DOB(LCDOB1_str);
+		Result=OL.VerifyLC1DOB(LCDOB1_str);
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_LCDOB2() throws InterruptedException, ParseException{
@@ -377,10 +551,16 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		LCDOB2_str=dd.DOB_2(LCDOB2_Type, passDate);
 		System.out.println("LCDOB2_str= "+LCDOB2_str);
 		OL.EnterLC2DOB(LCDOB2_str);
+		OL.EnterLC1DOB(LCDOB1_str);
+		Description="User enters "+LCDOB2_str+" in the 2nd Lap Child  Date of Birth field.";
+		Expected=LCDOB2_str+"is entered in the 2nd Lap Child  Date of Birth field";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void v_LC_DOB2() throws InterruptedException{
-		OL.VerifyLC2DOB(LCDOB2_str);
+		Result=OL.VerifyLC2DOB(LCDOB2_str);
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_LCDOB3() throws InterruptedException, ParseException{
@@ -397,11 +577,16 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		LCDOB3_str=dd.DOB_2(LCDOB3_Type, passDate);
 		System.out.println("LCDOB3_str= "+LCDOB3_str);
 		OL.EnterLC3DOB(LCDOB3_str);
+		Description="User enters "+LCDOB3_str+" in the 3rd Lap Child  Date of Birth field.";
+		Expected=LCDOB3_str+"is entered in the 3rd Lap Child  Date of Birth field";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	
 	public void v_LC_DOB3() throws InterruptedException{
-		OL.VerifyLC3DOB(LCDOB3_str);
+		Result=OL.VerifyLC3DOB(LCDOB3_str);
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_LCDOB4() throws InterruptedException, ParseException{
@@ -414,50 +599,80 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		}else{
 			passDate=ReturnDate_str;
 		}
-		LCDOB4_str=dd.DOB_2(LCDOB1_Type, passDate);
+		LCDOB4_str=dd.DOB_2(LCDOB4_Type, passDate);
 		System.out.println("LCDOB4_str= "+LCDOB4_str);
 		OL.EnterLC4DOB(LCDOB4_str);
+		OL.EnterLC1DOB(LCDOB1_str);
+		Description="User enters "+LCDOB4_str+" in the 4th Lap Child  Date of Birth field.";
+		Expected=LCDOB4_str+"is entered in the 4th Lap Child  Date of Birth field";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void v_LC_DOB4() throws InterruptedException{
-		OL.VerifyLC4DOB(LCDOB4_str);
+		Result=OL.VerifyLC4DOB(LCDOB4_str);
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_Submit() throws InterruptedException{
 		OL.SubmitFlightSearch();
+		Description="User executes the flight search by clicking submit.";
+		LF.AddStepToTestLog(Description);
 	}
 	
 	public void v_Error1() throws InterruptedException{
-		OL.ErrorDepartureDate();
+		Result=OL.ErrorDepartureDate();
+		Expected="User recieves and search error.";
+		LF.AddExpectedResult(Expected);
+		LF.AddActualResult(Result);
 	}
 	
 	public void v_Error2() throws InterruptedException{
-		OL.ErrorSrDOB();
+		Result=OL.ErrorSrDOB();
+		Expected="User recieves and search error.";
+		LF.AddExpectedResult(Expected);
+		LF.AddActualResult(Result);
 	}
 	
 	public void v_Error3() throws InterruptedException{
-		OL.ErrorDestinationEqDepart();
+		Result=OL.ErrorDestinationEqDepart();
+		Expected="User recieves and search error.";
+		LF.AddExpectedResult(Expected);
+		LF.AddActualResult(Result);
 	}
 	
 	public void v_Error4() throws InterruptedException{
-		OL.ErrorTooManyLC();
+		Result=OL.ErrorTooManyLC();
+		Expected="User recieves and search error.";
+		LF.AddExpectedResult(Expected);
+		LF.AddActualResult(Result);
 	}
 	
 	public void v_Error5() throws InterruptedException{
-		OL.ErrorArrivalDate();
+		Result=OL.ErrorArrivalDate();
+		Expected="User recieves and search error.";
+		LF.AddExpectedResult(Expected);
+		LF.AddActualResult(Result);
 	}
 	
 	public void v_Error6() throws InterruptedException{
-		OL.ErrorLapChildDOB();
+		Result=OL.ErrorLapChildDOB();
+		Expected="User recieves and search error.";
+		LF.AddExpectedResult(Expected);
+		LF.AddActualResult(Result);
 		
 	}
 	
 	public void v_Error7()throws InterruptedException{
-		
+		Result=OL.ErrorNoPassengers();
+		Expected="User recieves and search error.";
+		LF.AddExpectedResult(Expected);
+		LF.AddActualResult(Result);
 	}
 	
 	public void v_Execute_Search(){
-		
+		Expected="Flight Search is executed.";
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void v_Restart_Search(){
@@ -668,6 +883,17 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		System.out.println("Break 3");
 	}
 	
+	public void v_ReturnHome2(){
+		//For Nav
+	}
+	
+	public void v_ReturnHome1(){
+		//For Nav
+	}
+	
+	public void e_State(){
+		//For Nav
+	}
 	/*
 	 * Set of helping functions
 	 */

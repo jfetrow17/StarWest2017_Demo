@@ -10,7 +10,6 @@ import java.util.Date;
 import org.graphwalker.core.condition.EdgeCoverage;
 import org.graphwalker.core.condition.StopCondition;
 import org.graphwalker.core.condition.StopConditionException;
-import org.graphwalker.core.condition.VertexCoverage;
 import org.graphwalker.core.generator.PathGenerator;
 import org.graphwalker.core.generator.RandomPath;
 import org.graphwalker.core.machine.Context;
@@ -23,7 +22,7 @@ import org.testng.annotations.Test;
 import StarWestFlightSearch.*;
 
 
-public class Demonstration_Gen {
+public class SystemRegression_Gen {
 
 	
 	
@@ -52,12 +51,12 @@ public class Demonstration_Gen {
 	  context.setPathGenerator(new RandomPath(new EdgeCoverage(100)));
 	  
 	  Result result =  new TestBuilder()
-		 .addModel(FileA, new SWFLIGHT_Logon_Home().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(100))))
-		 .addModel(FileB, new FlightSearch_GWAPI().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(100))))
-		 .addModel(FileC, new SelectFlight_API().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(100))))
-		 .addModel(FileD, new GuestReg_API().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(50))))
-		 .addModel(FileE, new GuestReg_Details_API().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(25))))
-		 .addModel(FileF, new HotelSearch_API().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(100))))
+		 .addModel(FileA, new SWFLIGHT_Logon_Home().setPathGenerator(new RandomPath((StopCondition) new EdgeCoverage(100))))
+		 .addModel(FileB, new FlightSearch_GWAPI().setPathGenerator(new RandomPath((StopCondition) new EdgeCoverage(100))))
+		 .addModel(FileC, new SelectFlight_API().setPathGenerator(new RandomPath((StopCondition) new EdgeCoverage(100))))
+		 .addModel(FileD, new GuestReg_API().setPathGenerator(new RandomPath((StopCondition) new EdgeCoverage(50))))
+		 .addModel(FileE, new GuestReg_Details_API().setPathGenerator(new RandomPath((StopCondition) new EdgeCoverage(25))))
+		 .addModel(FileF, new HotelSearch_API().setPathGenerator(new RandomPath((StopCondition) new EdgeCoverage(100))))
 		 .execute();
 	 
 	/* modelhandler.add("BasicLogin", new AdminConsole_GWAPI(file_A,true, new RandomPathGenerator(new EdgeCoverage(1)),false));

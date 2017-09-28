@@ -14,6 +14,7 @@ import org.graphwalker.core.model.Action;
 public class HotelSearch_API extends ExecutionContext{
 	static StarWestFlightSearch.DealWithDates dd;
 	public static StarWestFlightSearch.ObjectLibrary OL;
+	public static StarWestFlightSearch.LoggingFunctions LF;
 	
 	public static String City;
 	public static String ArrivalDate;
@@ -23,6 +24,12 @@ public class HotelSearch_API extends ExecutionContext{
 	public static int LengthOfStay;
 	public static String DepartDate;
 	public static String Guests;
+	static DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+	static Date date = new Date();
+	public static String TodaysDate=dateFormat.format(date);
+	public static String Description;
+	public static String Expected;
+	public static String Result;
 	
 	public void e_Start(){
 		
@@ -37,61 +44,66 @@ public class HotelSearch_API extends ExecutionContext{
 		String ActionValue=Actions.get(0).getScript();
 		City=TrimAction(ActionValue, "City=");
 		OL.Hotel_SelectDestination(City);
+		Description="User selects "+City+" as their destination";
+		Expected=City+" is selected.";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void v_Destination() throws InterruptedException{
-		OL.Hotel_VerifyDestination(City);
+		Result=OL.Hotel_VerifyDestination(City);
+		LF.AddActualResult(Result);
 	}
 	
 	public void v_ArrivalDate() throws InterruptedException{
 		
-		OL.Hotel_VerifyArrivalDate(ArrivalDate);
+		Result=OL.Hotel_VerifyArrivalDate(ArrivalDate);
 		
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_ArrivalDate() throws InterruptedException, ParseException{
 		List<Action> Actions=getCurrentElement().getActions();
 		String ActionValue=Actions.get(0).getScript();
 		ArrivalDate=TrimAction(ActionValue, "Date=");
-		AD=dd.DealWithDates(ArrivalDate, "none");
+		AD=dd.DealWithDates(ArrivalDate, "none", "none");
 		
 		OL.Hotel_EnterArrival(AD);
+		Description="User selects "+ArrivalDate+" as their arrival date";
+		Expected=ArrivalDate+" is selected";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 		
 	}
-	/**
-	public void e_LengthOfStay() throws InterruptedException{
-		System.out.println("OL.Hotel_SelectLengthOfStay(2)");
-		OL.Hotel_SelectLengthOfStay(2);
-		System.out.println("WHAT IS GOING TO HAPPEN NEXT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		List<Action> Actions=getCurrentElement().getActions();
-		String ActionValue=Actions.get(0).getScript();
-		LOS=TrimAction(ActionValue, "LOS=");
-		System.out.println("Hey there!!!, LOS="+LOS);
-		LengthOfStay=Integer.parseInt(LOS);
-		System.out.println("Length of Stay="+LengthOfStay+".  This was Derived from LOS="+LOS);
-		OL.Hotel_SelectLengthOfStay(LengthOfStay);
-	}
-	 * @throws InterruptedException 
-	**/
+
 	
 	public void e_LengthOfStay() throws InterruptedException{
-		System.out.println("HEY THERE WE MADE IT (Edge)!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		
 		List<Action> Actions=getCurrentElement().getActions();
 		String ActionValue=Actions.get(0).getScript();
 		LOS=TrimAction(ActionValue, "LOS=");
 		LengthOfStay=Integer.parseInt(LOS);
 		OL.Hotel_SelectLengthOfStay(LengthOfStay);
+		Description="The uses selects their length of stay as:  "+LengthOfStay;
+		Expected=LengthOfStay+" is selected.";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	}
 	
 	public void v_LengthOfStay() throws NumberFormatException, InterruptedException{
-		System.out.println("HEY THERE WE MADE IT (Vertex)!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		
 		System.out.println("I wonder if this works----");
-		OL.Hotel_VerifyLengthOfStay(LengthOfStay);
+		Result=OL.Hotel_VerifyLengthOfStay(LengthOfStay);
+		LF.AddActualResult(Result);
 	}
 	
 	public void v_DepartDate() throws NumberFormatException, ParseException, InterruptedException{
-		
-		OL.Hotel_VerifyDepartDate(Integer.parseInt(LOS), AD);
+		Description="The system displays the departure date.";
+		Expected="The depature date is displayed";
+		Result=OL.Hotel_VerifyDepartDate(Integer.parseInt(LOS), AD);
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_Guests() throws NumberFormatException, InterruptedException{
@@ -99,16 +111,22 @@ public class HotelSearch_API extends ExecutionContext{
 		String ActionValue=Actions.get(0).getScript();
 		Guests=TrimAction(ActionValue, "Guests=");
 		OL.Hotel_SelectGuests(Integer.parseInt(Guests));
+		Description="The user selects the number of guests as:  "+Guests;
+		Expected=Guests+" is selected";
+		LF.AddStepToTestLog(Description);
+		LF.AddExpectedResult(Expected);
 	
 	}
 	
 	public void v_Guests() throws NumberFormatException, InterruptedException{
 		
-		OL.Hotel_VerifyGuests(Integer.parseInt(Guests));
+		Result=OL.Hotel_VerifyGuests(Integer.parseInt(Guests));
+		LF.AddActualResult(Result);
 	}
 	
 	public void e_Search() throws InterruptedException{
 		OL.Hotel_Search();
+		Description="The user executes the hotel search.";
 	}
 	
 	public void v_Logic_1(){
@@ -117,11 +135,16 @@ public class HotelSearch_API extends ExecutionContext{
 	
 	
 	public void v_SearchError() throws InterruptedException{
-		OL.Hotel_ErrorMsg();
+		Result=OL.Hotel_ErrorMsg();
+		Expected="Error Messag is displayed.";
+		LF.AddExpectedResult(Expected);
+		LF.AddActualResult(Result);
+		
 	}
 	
 	public void v_Home(){
-		
+		Result="Pass";
+		LF.AddActualResult(Result);
 	}
 	
 	public void v_Nav(){

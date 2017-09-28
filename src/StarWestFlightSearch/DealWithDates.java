@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class DealWithDates {
 
-	public static String DealWithDates (String TypeOfDate, String ExistingDate) throws ParseException{
+	public static String DealWithDates (String TypeOfDate, String ExistingDate, String ExistingDateType) throws ParseException{
 		String x=null;
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 		Date today = Calendar.getInstance().getTime(); 
@@ -36,19 +36,24 @@ public class DealWithDates {
 			}
 		}else{
 			Date date = df.parse(ExistingDate);
-			
 			Calendar c = Calendar.getInstance(); 
 			c.setTime(date); 
-			if(TypeOfDate.equalsIgnoreCase("FutureDate+1")){
-				c.add(Calendar.DATE, 1);
-			}else if(TypeOfDate.equalsIgnoreCase("FutureDate-1")){
-				c.add(Calendar.DATE, -1);
+			if(ExistingDateType.equals("FutureDate")){
+			
+				if(TypeOfDate.equalsIgnoreCase("FutureDate+1")){
+					c.add(Calendar.DATE, 1);
+				}else if(TypeOfDate.equalsIgnoreCase("FutureDate-1")){
+					c.add(Calendar.DATE, -1);
+				}else{
+					c.add(Calendar.DATE, 1);
+				}
 			}else{
-				c.add(Calendar.DATE, 1);
+				c.add(Calendar.DATE, RandomNumber(2,31));
 			}
-			date=c.getTime();
+			
 			
 			x=df.format(c.getTime());
+			System.out.println("DateType:  "+TypeOfDate+"Date sent: "+x);
 		}
 		
 		return x;
@@ -101,7 +106,7 @@ public class DealWithDates {
 		c.setTime(date);
 		if(TypeOfDOB.equals(">2 at Return")){
 			
-			c.add(Calendar.YEAR,RandomNumber(3,10));
+			c.add(Calendar.YEAR,-1*(RandomNumber(3,10)));
 			date=c.getTime();
 			x=df.format(c.getTime());
 		}else if(TypeOfDOB.equals("2 at Return")){
@@ -126,7 +131,7 @@ public class DealWithDates {
 			x=df.format(c.getTime());
 		}else if(TypeOfDOB.equals(">2 at Depart")){
 			
-			c.add(Calendar.YEAR,RandomNumber(3,10));
+			c.add(Calendar.YEAR,-1*(RandomNumber(3,10)));
 			date=c.getTime();
 			x=df.format(c.getTime());
 			

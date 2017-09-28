@@ -3,14 +3,10 @@ package StarWestFlightSearch;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.net.URISyntaxException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.graphwalker.core.condition.EdgeCoverage;
 import org.graphwalker.core.condition.StopCondition;
 import org.graphwalker.core.condition.StopConditionException;
-import org.graphwalker.core.condition.VertexCoverage;
 import org.graphwalker.core.generator.PathGenerator;
 import org.graphwalker.core.generator.RandomPath;
 import org.graphwalker.core.machine.Context;
@@ -20,14 +16,9 @@ import org.graphwalker.java.test.Result;
 import org.graphwalker.java.test.TestBuilder;
 import org.testng.annotations.Test;
 
-import StarWestFlightSearch.*;
+import StarWestFlightSearch.Demonstration_Gen.TestContext;
 
-
-public class Demonstration_Gen {
-
-	
-	
-	
+public class Hotel_Search {
 
 	@Test
 	
@@ -36,11 +27,7 @@ public class Demonstration_Gen {
 	 Model model = new Model();
 
 	 String FileA = "/StarWestFlightSearch/graphml/SWLogon_Home.graphml";
-	 String FileB = "/StarWestFlightSearch/graphml/Web_Flight_Search_V2.graphml";
-	 String FileC = "/StarWestFlightSearch/graphml/SelectFlight.graphml";
-	 String FileD = "/StarWestFlightSearch/graphml/GuestRegistration.graphml";//50%
-	 String FileE = "/StarWestFlightSearch/graphml/GuestRegDetails.graphml"; //25%
-	 String FileF = "/StarWestFlightSearch/graphml/HotelSearch.graphml";
+	 String FileF = "/StarWestFlightSearch/graphml/HotelSearch_Hotel.graphml";
 	 
 	 
 		
@@ -52,12 +39,8 @@ public class Demonstration_Gen {
 	  context.setPathGenerator(new RandomPath(new EdgeCoverage(100)));
 	  
 	  Result result =  new TestBuilder()
-		 .addModel(FileA, new SWFLIGHT_Logon_Home().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(100))))
-		 .addModel(FileB, new FlightSearch_GWAPI().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(100))))
-		 .addModel(FileC, new SelectFlight_API().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(100))))
-		 .addModel(FileD, new GuestReg_API().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(50))))
-		 .addModel(FileE, new GuestReg_Details_API().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(25))))
-		 .addModel(FileF, new HotelSearch_API().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(100))))
+		 .addModel(FileA, new SWFLIGHT_Logon_Home().setPathGenerator(new RandomPath((StopCondition) new EdgeCoverage(100))))
+		 .addModel(FileF, new HotelSearch_API().setPathGenerator(new RandomPath((StopCondition) new EdgeCoverage(100))))
 		 .execute();
 	 
 	/* modelhandler.add("BasicLogin", new AdminConsole_GWAPI(file_A,true, new RandomPathGenerator(new EdgeCoverage(1)),false));
@@ -97,4 +80,3 @@ public class Demonstration_Gen {
 		}
 	}
 }
-
