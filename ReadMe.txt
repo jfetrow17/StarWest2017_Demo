@@ -10,7 +10,7 @@ You will need the following to be able to execute the demo provided here:
 - Selenium webdriver
 - TestNG
 - Graphwalker
-- yED (Not needed to execute the demonstration but will allow you review the .graphml models)
+- yED 
 
 - Preq:  you must already have java installed.
 
@@ -25,14 +25,16 @@ You will need the following to be able to execute the demo provided here:
 	-  graphwalker-cli-3.4.2.jar
 	-  selenium-server-standalone-2.43.1.jar 
 	-  org.testng.eclipse_6.8.6.20141201_2240.jar
-	-  If runnin java 8 or higher you may need guava_22.jar
-	*  Versions used in development of the demonstartion, yours may differ slightly
+	
+	*  for best results use the jars with this readme
 
 6.  place the chromedriver.exe in C:/Web_Flight/ (the automation script expects it to be here)
 7.  Execute one of the following from your java project
 	-  Demonstration_Gen.java (this was executed during StarWest)
 	-  Hotel_Search.java (this was executed during starwest)
 	-  SystemRegression_Gen.java (Not executed at StarWest, Warning!!! this takes hours to execute)
+
+Note:  please make sure all of the path are correct in you java project. The tests will fail to run if they are no correct.
 	
 ________________________________________________________________________________________
 
