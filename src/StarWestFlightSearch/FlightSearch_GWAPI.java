@@ -365,7 +365,7 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 				ReturnDate_str=dd.DealWithDates(ReturnDateType, "none", DepartDateType);
 			}
 		}
-		System.out.println("ReturnDate_str:"+ReturnDate_str);
+		
 		OL.EnterRetrunDate(ReturnDate_str);
 		Description="User enters "+ReturnDate_str+" in the Return date field.";
 		Expected=ReturnDate_str+"is entered in Return Date field.";
@@ -445,7 +445,7 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		String ActionValue=Actions.get(0).getScript();
 		SRDOB1_Type=TrimAction(ActionValue, "SR1=");
 		SRDOB1_str=dd.DOB_65(SRDOB1_Type, DepartDate_str);
-		System.out.println("SRDOB1_str:"+SRDOB1_str);
+		
 		OL.EnterSr1DOB(SRDOB1_str);
 		Description="User enters "+SRDOB1_str+" in the 1st Senior Date of Birth field.";
 		Expected=SRDOB1_str+"is entered in the 1st Senior Date of Birth field";
@@ -464,7 +464,7 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		SRDOB2_Type=TrimAction(ActionValue, "SR2=");
 		SRDOB2_str=dd.DOB_65(SRDOB2_Type, DepartDate_str);
 		OL.EnterSr2DOB(SRDOB2_str);
-		System.out.println("SRDOB2_str:"+SRDOB2_str);
+		
 		Description="User enters "+SRDOB2_str+" in the 2nd Senior Date of Birth field.";
 		Expected=SRDOB2_str+"is entered in the 2nd Senior Date of Birth field";
 		LF.AddStepToTestLog(Description);
@@ -482,7 +482,7 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		SRDOB3_Type=TrimAction(ActionValue, "SR3=");
 		SRDOB3_str=dd.DOB_65(SRDOB3_Type, DepartDate_str);
 		OL.EnterSr3DOB(SRDOB3_str);
-		System.out.println("SRDOB3_str:"+SRDOB3_str);
+		
 		Description="User enters "+SRDOB3_str+" in the 3rd Senior Date of Birth field.";
 		Expected=SRDOB3_str+"is entered in the 3rd Senior Date of Birth field";
 		LF.AddStepToTestLog(Description);
@@ -500,7 +500,7 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		SRDOB4_Type=TrimAction(ActionValue, "SR4=");
 		SRDOB4_str=dd.DOB_65(SRDOB4_Type, DepartDate_str);
 		OL.EnterSr4DOB(SRDOB4_str);
-		System.out.println("SRDOB4_str:"+SRDOB4_str);
+	
 		Description="User enters "+SRDOB4_str+" in the 4th Senior Date of Birth field.";
 		Expected=SRDOB4_str+"is entered in the 4th Senior Date of Birth field";
 		LF.AddStepToTestLog(Description);
@@ -524,7 +524,7 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 			passDate=ReturnDate_str;
 		}
 		LCDOB1_str=dd.DOB_2(LCDOB1_Type, passDate);
-		System.out.println("LCDOB1_str= "+LCDOB1_str);
+	
 		OL.EnterLC1DOB(LCDOB1_str);
 		Description="User enters "+LCDOB1_str+" in the 1st Lap Child  Date of Birth field.";
 		Expected=LCDOB1_str+"is entered in the 1st  Lap Child  Date of Birth field";
@@ -549,7 +549,7 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 			passDate=ReturnDate_str;
 		}
 		LCDOB2_str=dd.DOB_2(LCDOB2_Type, passDate);
-		System.out.println("LCDOB2_str= "+LCDOB2_str);
+		
 		OL.EnterLC2DOB(LCDOB2_str);
 		OL.EnterLC1DOB(LCDOB1_str);
 		Description="User enters "+LCDOB2_str+" in the 2nd Lap Child  Date of Birth field.";
@@ -575,7 +575,7 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 			passDate=ReturnDate_str;
 		}
 		LCDOB3_str=dd.DOB_2(LCDOB3_Type, passDate);
-		System.out.println("LCDOB3_str= "+LCDOB3_str);
+		
 		OL.EnterLC3DOB(LCDOB3_str);
 		Description="User enters "+LCDOB3_str+" in the 3rd Lap Child  Date of Birth field.";
 		Expected=LCDOB3_str+"is entered in the 3rd Lap Child  Date of Birth field";
@@ -600,7 +600,7 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 			passDate=ReturnDate_str;
 		}
 		LCDOB4_str=dd.DOB_2(LCDOB4_Type, passDate);
-		System.out.println("LCDOB4_str= "+LCDOB4_str);
+		
 		OL.EnterLC4DOB(LCDOB4_str);
 		OL.EnterLC1DOB(LCDOB1_str);
 		Description="User enters "+LCDOB4_str+" in the 4th Lap Child  Date of Birth field.";
@@ -689,54 +689,44 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 	
 
 	public void v_Logic_1(){
-		System.out.println("@ Logic 1");
-		System.out.println("SR interger: "+SR_Passengers);
+
 	}
 	
 	public void v_Logic_2(){
-		System.out.println("@ Logic 2");
-		System.out.println("SR interger: "+SR_Passengers);
+		
 	}
 	
 	public void v_Logic_3(){
-		System.out.println("@ Logic 3");
-		System.out.println("SR interger: "+SR_Passengers);
+		
 	}
 	
 	public void v_Logic_4(){
-		System.out.println("@ Logic 4");
-		System.out.println("SR interger: "+SR_Passengers);
+		
 	}
 	
 	public void v_Logic_5(){
-		System.out.println("@ Logic 5");
-		System.out.println("SR interger: "+SR_Passengers);
+		
 	}
 	
 	public void v_Logic_6(){
-		System.out.println("@ Logic 6");
-		System.out.println("SR interger: "+SR_Passengers);
+	
 	}
 	
 	public void v_Logic_7(){
-		System.out.println("@ Logic 7");
-		System.out.println("SR interger: "+SR_Passengers);
+		
 	}
 	
 	public void v_Logic_8(){
-		System.out.println("@ Logic 8");
-		System.out.println("SR interger: "+SR_Passengers);
+		
 	}
 
 	
 	public void v_Logic_9(){
-		System.out.println("@ Logic 9");
-		System.out.println("SR interger: "+SR_Passengers);
+	
 	}
 	
 	public void v_Logic_10(){
-		System.out.println("@ Logic 10");
-		System.out.println("SR interger: "+SR_Passengers);
+		
 	}
 	
 	public void v_Logic_11(){
@@ -871,17 +861,7 @@ public class FlightSearch_GWAPI extends ExecutionContext{
 		
 	}
 	
-	public void v_Break_1(){
-		System.out.println("Break 1");
-	}
-	
-	public void v_Break_2(){
-		System.out.println("Break 2");
-	}
-	
-	public void v_Break_3(){
-		System.out.println("Break 3");
-	}
+
 	
 	public void v_ReturnHome2(){
 		//For Nav

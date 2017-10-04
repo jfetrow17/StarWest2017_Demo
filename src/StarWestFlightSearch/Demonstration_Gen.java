@@ -52,12 +52,12 @@ public class Demonstration_Gen {
 	  context.setPathGenerator(new RandomPath(new EdgeCoverage(100)));
 	  
 	  Result result =  new TestBuilder()
-		 .addModel(FileA, new SWFLIGHT_Logon_Home().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(10))))
-		 .addModel(FileB, new FlightSearch_GWAPI().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(10))))
-		 .addModel(FileC, new SelectFlight_API().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(10))))
+		 .addModel(FileA, new SWFLIGHT_Logon_Home().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(100))))
+		 .addModel(FileB, new FlightSearch_GWAPI().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(100))))
+		 .addModel(FileC, new SelectFlight_API().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(100))))
 		 .addModel(FileD, new GuestReg_API().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(10))))
 		 .addModel(FileE, new GuestReg_Details_API().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(10))))
-		 .addModel(FileF, new HotelSearch_API().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(10))))
+		 .addModel(FileF, new HotelSearch_API().setPathGenerator(new RandomPath((StopCondition) new VertexCoverage(100))))
 		 .execute();
 	 
 	/* modelhandler.add("BasicLogin", new AdminConsole_GWAPI(file_A,true, new RandomPathGenerator(new EdgeCoverage(1)),false));

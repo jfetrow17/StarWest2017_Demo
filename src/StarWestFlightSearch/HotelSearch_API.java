@@ -92,7 +92,7 @@ public class HotelSearch_API extends ExecutionContext{
 	
 	public void v_LengthOfStay() throws NumberFormatException, InterruptedException{
 		
-		System.out.println("I wonder if this works----");
+		
 		Result=OL.Hotel_VerifyLengthOfStay(LengthOfStay);
 		LF.AddActualResult(Result);
 	}

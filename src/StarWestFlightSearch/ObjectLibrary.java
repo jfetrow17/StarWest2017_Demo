@@ -808,7 +808,7 @@ public class ObjectLibrary {
 	
 	public static void Hotel_SelectLengthOfStay(int LOS) throws InterruptedException{
 		String x=String.valueOf(LOS);
-		System.out.println("Selecting Length of Stay:  "+x);
+		
 		Select dropdown = new Select(driver.findElement(By.id("los")));
 		dropdown.selectByValue(String.valueOf(x));
 		Thread.sleep(500);
@@ -827,14 +827,14 @@ public class ObjectLibrary {
 	}
 	
 	public static String Hotel_VerifyDepartDate(int LOS, String Arrival) throws ParseException, InterruptedException{
-		System.out.println("The Arrival Date is:  "+Arrival);
+		
 		Date DepartDate=StringToDate(Arrival);
 		SimpleDateFormat sdf = new SimpleDateFormat("mm/dd/yyyy");
 		Calendar c = Calendar.getInstance();
 		c.setTime(DepartDate); // Now use today date.
 		c.add(Calendar.DATE, LOS); // Adding 5 days
 		String Expected = sdf.format(c.getTime());
-		//System.out.println(Expected);
+		
 		
 		String Actual=driver.findElement(By.id("dpart")).getText();
 		
@@ -894,7 +894,7 @@ public class ObjectLibrary {
 		String string = _date;
 		DateFormat format = new SimpleDateFormat("mm/dd/yyyy");
 		Date date = format.parse(string);
-		System.out.println(_date+"  ----->   "+date);
+		
 		return date;
 	}
 	

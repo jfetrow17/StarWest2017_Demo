@@ -26,8 +26,8 @@ public class Hotel_Search {
 	 public void edge() throws InterruptedException, StopConditionException, URISyntaxException {
 	 Model model = new Model();
 
-	 String FileA = "/StarWestFlightSearch/graphml/SWLogon_Home.graphml";
-	 String FileF = "/StarWestFlightSearch/graphml/HotelSearch_Hotel.graphml";
+	 String FileA = "/StarWestFlightSearch/graphml/SWLogon_Home_Hotel.graphml";
+	 String FileF = "/StarWestFlightSearch/graphml/HotelSearch.graphml";
 	 
 	 
 		

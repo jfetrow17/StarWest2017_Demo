@@ -53,7 +53,7 @@ public class DealWithDates {
 			
 			
 			x=df.format(c.getTime());
-			System.out.println("DateType:  "+TypeOfDate+"Date sent: "+x);
+			
 		}
 		
 		return x;
