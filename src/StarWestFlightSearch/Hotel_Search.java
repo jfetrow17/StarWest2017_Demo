@@ -3,10 +3,12 @@ package StarWestFlightSearch;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.net.URISyntaxException;
+import java.util.concurrent.TimeUnit;
 
 import org.graphwalker.core.condition.EdgeCoverage;
 import org.graphwalker.core.condition.StopCondition;
 import org.graphwalker.core.condition.StopConditionException;
+import org.graphwalker.core.condition.TimeDuration;
 import org.graphwalker.core.generator.PathGenerator;
 import org.graphwalker.core.generator.RandomPath;
 import org.graphwalker.core.machine.Context;
@@ -32,15 +34,17 @@ public class Hotel_Search {
 	 
 		
 	 
-	 PathGenerator pathGenerator = new RandomPath(new EdgeCoverage(100));
+	// PathGenerator pathGenerator = new RandomPath(new EdgeCoverage(100));
 	 //PathGenerator pathGenerator = new RandomPath(new TimeDuration(100, TimeUnit.MINUTES));
-	  Context context = new TestContext (model, pathGenerator);
-	  context.setModel(model.build());
-	  context.setPathGenerator(new RandomPath(new EdgeCoverage(100)));
+	  //Context context = new TestContext (model, pathGenerator);
+	  //context.setModel(model.build());
+	  //context.setPathGenerator(new RandomPath(new EdgeCoverage(100)));
 	  
 	  Result result =  new TestBuilder()
-		 .addModel(FileA, new SWFLIGHT_Logon_Home().setPathGenerator(new RandomPath((StopCondition) new EdgeCoverage(100))))
-		 .addModel(FileF, new HotelSearch_API().setPathGenerator(new RandomPath((StopCondition) new EdgeCoverage(100))))
+		 //.addModel(FileA, new SWFLIGHT_Logon_Home().setPathGenerator(new RandomPath((StopCondition) new EdgeCoverage(100))))
+		 //.addModel(FileF, new HotelSearch_API().setPathGenerator(new RandomPath((StopCondition) new EdgeCoverage(100))))
+		 .addModel(FileA, new SWFLIGHT_Logon_Home().setPathGenerator(new RandomPath((StopCondition) new TimeDuration(2, TimeUnit.MINUTES))))
+		 .addModel(FileF, new HotelSearch_API().setPathGenerator(new RandomPath((StopCondition) new TimeDuration(2, TimeUnit.MINUTES))))
 		 .execute();
 	 
 	/* modelhandler.add("BasicLogin", new AdminConsole_GWAPI(file_A,true, new RandomPathGenerator(new EdgeCoverage(1)),false));
